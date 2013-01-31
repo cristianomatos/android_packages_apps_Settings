@@ -97,7 +97,7 @@ public class NavbarButtonSettings extends SettingsPreferenceFragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-         refreshSettings();
+        refreshSettings();
         setHasOptionsMenu(true);
     }
 
@@ -403,20 +403,10 @@ public class NavbarButtonSettings extends SettingsPreferenceFragment implements
                 File f = new File(Uri.parse(customIconUri).getPath());
                 if (f.exists())
                     pAction.setIcon(resize(new BitmapDrawable(res, f.getAbsolutePath())));
-            }
-
-            if (customIconUri != null && !customIconUri.equals("")
-                    && customIconUri.startsWith("file")) {
-                // it's an icon the user chose from the gallery here
-                File icon = new File(Uri.parse(customIconUri).getPath());
-                if (icon.exists())
-                    pAction.setIcon(resize(new BitmapDrawable(getResources(), icon
-                            .getAbsolutePath())));
-
             } else if (customIconUri != null && !customIconUri.equals("")) {
                 // here they chose another app icon
                 try {
-                    pAction.setIcon(resize(pm.getActivityIcon(Intent.parseUri(customIconUri, 0))));
+                    pAction.setIcon(resize(pm.getActivityIcon(Intent.parseUri(uri, 0))));
                 } catch (NameNotFoundException e) {
                     e.printStackTrace();
                 } catch (URISyntaxException e) {
@@ -479,6 +469,8 @@ public class NavbarButtonSettings extends SettingsPreferenceFragment implements
                 resId = mSystemUiResources.getIdentifier("com.android.systemui:drawable/ic_sysbar_power", null, null);
             } else if (uri.equals("**notifications**")) {
                 resId = mSystemUiResources.getIdentifier("com.android.systemui:drawable/ic_sysbar_notifications", null, null);
+            } else if (uri.equals("**lastapp**")) {
+                resId = mSystemUiResources.getIdentifier("com.android.systemui:drawable/ic_sysbar_lastapp", null, null);
             }
         } else {
             try {
@@ -533,6 +525,8 @@ public class NavbarButtonSettings extends SettingsPreferenceFragment implements
                 return getResources().getString(R.string.navbar_action_power);
             else if (uri.equals("**notifications**"))
                 return getResources().getString(R.string.navbar_action_notifications);
+            else if (uri.equals("**lastapp**"))
+                return getResources().getString(R.string.navbar_action_lastapp);
             else if (uri.equals("**null**"))
                 return getResources().getString(R.string.navbar_action_none);
         } else {

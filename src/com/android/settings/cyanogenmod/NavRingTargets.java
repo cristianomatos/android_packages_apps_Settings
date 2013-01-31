@@ -233,20 +233,10 @@ public class NavRingTargets extends SettingsPreferenceFragment implements
                 File f = new File(Uri.parse(customIconUri).getPath());
                 if (f.exists())
                     pAction.setIcon(resize(new BitmapDrawable(res, f.getAbsolutePath())));
-            }
-
-            if (customIconUri != null && !customIconUri.equals("")
-                    && customIconUri.startsWith("file")) {
-                // it's an icon the user chose from the gallery here
-                File icon = new File(Uri.parse(customIconUri).getPath());
-                if (icon.exists())
-                    pAction.setIcon(resize(new BitmapDrawable(getResources(), icon
-                            .getAbsolutePath())));
-
             } else if (customIconUri != null && !customIconUri.equals("")) {
                 // here they chose another app icon
                 try {
-                    pAction.setIcon(resize(pm.getActivityIcon(Intent.parseUri(customIconUri, 0))));
+                    pAction.setIcon(resize(pm.getActivityIcon(Intent.parseUri(uri, 0))));
                 } catch (NameNotFoundException e) {
                     e.printStackTrace();
                 } catch (URISyntaxException e) {
@@ -421,6 +411,8 @@ public class NavRingTargets extends SettingsPreferenceFragment implements
                     return getResources().getString(R.string.ring_vib_silent);
             else if (uri.equals("**kill**"))
                     return getResources().getString(R.string.kill_app);
+            else if (uri.equals("**lastapp**"))
+                    return getResources().getString(R.string.lastapp);
             else if (uri.equals("**screenoff**"))
                     return getResources().getString(R.string.screen_off);
             else if (uri.equals("**power**"))
@@ -466,6 +458,8 @@ public class NavRingTargets extends SettingsPreferenceFragment implements
                 resId = mSystemUiResources.getIdentifier("com.android.systemui:drawable/ic_navbar_ring_vib_silent", null, null);
         } else if (uri.equals("**kill**")) {
                 resId = mSystemUiResources.getIdentifier("com.android.systemui:drawable/ic_navbar_killtask", null, null);
+        } else if (uri.equals("**lastapp**")) {
+                resId = mSystemUiResources.getIdentifier("com.android.systemui:drawable/ic_navbar_lastapp", null, null);
         } else if (uri.equals("**screenoff**")) {
                 resId = mSystemUiResources.getIdentifier("com.android.systemui:drawable/ic_navbar_power", null, null);
         } else if (uri.equals("**power**")) {
