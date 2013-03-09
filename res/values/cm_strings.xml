@@ -1280,6 +1280,9 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="network_speed_color_reset">Reset</string>
     <string name="network_speed_color_summary">Change the color of network speed indicator</string>    
 
+    <!-- TRDS Settings -->
+    <string name="trds_settings_title">Dark Droid</string>
+
     <!-- General UI -->
     <string name="misc_short">Misc</string>
     <string name="title_ui">General UI</string>
