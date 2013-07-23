@@ -50,6 +50,7 @@ import android.util.Log;
 import android.widget.EditText; 
 
 import com.android.internal.view.RotationPolicy;
+import com.android.settings.cyanogenmod.DisplayColor; 
 import com.android.settings.cyanogenmod.DisplayRotation;
 
 public class DisplaySettings extends SettingsPreferenceFragment implements
@@ -71,7 +72,8 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_SCREEN_OFF_ANIMATION = "screen_off_animation";
     private static final String PREF_CUSTOM_CARRIER_LABEL = "custom_carrier_label"; 
     private static final String KEY_DUAL_PANEL = "force_dualpanel";
-    private static final String KEY_WAKEUP_WHEN_PLUGGED_UNPLUGGED = "wakeup_when_plugged_unplugged";   
+    private static final String KEY_WAKEUP_WHEN_PLUGGED_UNPLUGGED = "wakeup_when_plugged_unplugged";
+    private static final String KEY_DISPLAY_COLOR = "color_calibration";    
 
     // Strings used for building the summary
     private static final String ROTATION_ANGLE_0 = "0";
@@ -221,7 +223,11 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
 	mWakeUpWhenPluggedOrUnplugged = (CheckBoxPreference) findPreference(KEY_WAKEUP_WHEN_PLUGGED_UNPLUGGED);
         mWakeUpWhenPluggedOrUnplugged.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
-                        Settings.System.WAKEUP_WHEN_PLUGGED_UNPLUGGED, 1) == 1); 
+                        Settings.System.WAKEUP_WHEN_PLUGGED_UNPLUGGED, 1) == 1);
+
+	if (!DisplayColor.isSupported()) {
+            removePreference(KEY_DISPLAY_COLOR);
+        }  
     } 
 
     private void updateDisplayRotationPreferenceDescription() {
