@@ -675,8 +675,11 @@
 
     <!-- Wakeup options -->
     <string name="display_category_wakeup_options_title">Wake-up options</string>
-    <string name="pref_home_wake_title">Home button</string>
-    <string name="pref_home_wake_summary">Pressing the home button will wake your device</string>
+    <string name="pref_wakeon_button_title">Wakeon Button</string>
+    <string name="pref_wakeon_button_summary">Pressing the %1$s will wake your device</string>
+    <string name="wakeon_button_power">Power button</string>
+    <string name="wakeon_button_home">Home button</string>
+    <string name="wakeon_button_both">Power or Home buttons</string>
     <string name="pref_volume_wake_title">Volume rocker</string>
     <string name="pref_volume_wake_summary">Pressing the volume rocker up or down will wake your device</string>
 

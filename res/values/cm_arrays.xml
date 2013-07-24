@@ -1009,7 +1009,7 @@
         <item>213</item>
         <item>240</item>
         <item>320</item>
-    </string-array>  
+    </string-array>
 
     <!-- App sidebar -->
     <string-array name="app_sidebar_position_entries" translatable="false">
@@ -1041,6 +1041,19 @@
         <item>1.0</item>
         <item>1.5</item>
         <item>2.0</item>
+    </string-array>
+
+    <!-- Wake on button -->
+    <string-array name="entries_wakeon_button">
+        <item>@string/wakeon_button_power</item>
+        <item>@string/wakeon_button_home</item>
+        <item>@string/wakeon_button_both</item>
+    </string-array>
+
+    <string-array name="values_wakeon_button" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
     </string-array>
 
 </resources>

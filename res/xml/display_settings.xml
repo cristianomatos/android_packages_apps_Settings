@@ -68,11 +68,11 @@
             android:key="category_wakeup_options"
             android:title="@string/display_category_wakeup_options_title" >
 
-            <CheckBoxPreference
-                android:key="pref_home_wake"
-                android:title="@string/pref_home_wake_title"
-                android:summary="@string/pref_home_wake_summary"
-                android:defaultValue="true" />
+            <ListPreference
+                android:key="pref_wakeon_button"
+                android:title="@string/pref_wakeon_button_title"
+                android:entries="@array/entries_wakeon_button"
+                android:entryValues="@array/values_wakeon_button" />  
 
             <CheckBoxPreference
                 android:key="pref_volume_wake"
