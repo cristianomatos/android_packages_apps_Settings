@@ -1009,4 +1009,8 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="custom_carrier_label_explain">Please enter a new label. Leave blank to revert to stock label.</string>
     <string name="custom_carrier_label_notset">Custom label currently not set</string>  
 
+    <!-- Force dual panel -->
+    <string name="force_dualpanel_title">Force dual panel in settings</string>
+    <string name="force_dualpanel_summary">This will enable/disable dual panel in settings (Need Reboot!)"</string> 
+
 </resources>
