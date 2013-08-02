@@ -54,6 +54,9 @@ public class StatusBar extends SettingsPreferenceFragment
     private static final String STATUS_BAR_CATEGORY_GENERAL = "status_bar_general";
     private static final String PREF_ENABLE = "clock_style_pref";
 
+    private static final String PREF_STATUS_BAR_AUTO_HIDE = "status_bar_auto_hide"; 
+    private static final String PREF_STATUS_BAR_QUICK_PEEK = "status_bar_quick_peek"; 
+
     /* Custom circle battery options */
     private static final String PREF_STATUS_BAR_CIRCLE_BATTERY_COLOR = "circle_battery_color";
     private static final String PREF_STATUS_BAR_CIRCLE_BATTERY_TEXT_COLOR = "circle_battery_text_color";
@@ -81,7 +84,9 @@ public class StatusBar extends SettingsPreferenceFragment
     private ListPreference mBatteryBarStyle;
     private ListPreference mBatteryBarThickness;
     private CheckBoxPreference mBatteryBarChargingAnimation;
-    private ColorPickerPreference mBatteryBarColor; 
+    private ColorPickerPreference mBatteryBarColor;
+    private ListPreference mStatusBarAutoHide; 
+    private CheckBoxPreference mStatusBarQuickPeek; 
 
     private boolean mCheckPreferences;
 
@@ -216,6 +221,17 @@ public class StatusBar extends SettingsPreferenceFragment
                 .getContentResolver(),
                 Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS, 1))
                 + ""); 
+
+	mStatusBarAutoHide = (ListPreference) prefSet.findPreference(PREF_STATUS_BAR_AUTO_HIDE);
+        int statusBarAutoHideValue = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
+                Settings.System.AUTO_HIDE_STATUSBAR, 0);
+        mStatusBarAutoHide.setValue(String.valueOf(statusBarAutoHideValue));
+        updateStatusBarAutoHideSummary(statusBarAutoHideValue);
+        mStatusBarAutoHide.setOnPreferenceChangeListener(this);  
+
+	mStatusBarQuickPeek = (CheckBoxPreference) prefSet.findPreference(PREF_STATUS_BAR_QUICK_PEEK);
+        mStatusBarQuickPeek.setChecked((Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
+                Settings.System.STATUSBAR_PEEK, 0) == 1)); 
 
 	PreferenceCategory generalCategory =
                 (PreferenceCategory) findPreference(STATUS_BAR_CATEGORY_GENERAL);
@@ -356,22 +372,32 @@ public class StatusBar extends SettingsPreferenceFragment
             Settings.System.putInt(resolver, 
 		    Settings.System.STATUS_BAR_NOTIF_COUNT, value ? 1 : 0);
             return true;
+	} else if (preference == mStatusBarAutoHide) {
+            int statusBarAutoHideValue = Integer.valueOf((String) newValue);
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.AUTO_HIDE_STATUSBAR, statusBarAutoHideValue);
+            updateStatusBarAutoHideSummary(statusBarAutoHideValue);
+            return true; 
         }
 
         return false;
     }
 
-    /*
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        } else if (preference == mBatteryBarChargingAnimation) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE,
-                    ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
-            return true;
+	boolean value;
+	if (preference == mStatusBarQuickPeek) {
+            value = mStatusBarQuickPeek.isChecked();
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.STATUSBAR_PEEK, value ? 1 : 0);
+            return true;         
+	//} else if (preference == mBatteryBarChargingAnimation) {
+        //    Settings.System.putInt(getActivity().getContentResolver(),
+        //            Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE,
+        //            ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
+        //    return true;
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference); 
     }
-    */
 
     private void updateClockStyleDescription() {
         if (Settings.System.getInt(getActivity().getContentResolver(),
@@ -379,9 +405,20 @@ public class StatusBar extends SettingsPreferenceFragment
             mClockStyle.setSummary(getString(R.string.clock_enabled));
         } else {
             mClockStyle.setSummary(getString(R.string.clock_disabled));
-         }  
+        }  
 
     }
+
+    private void updateStatusBarAutoHideSummary(int value) {
+        if (value == 0) {
+            /* StatusBar AutoHide deactivated */
+            mStatusBarAutoHide.setSummary(getResources().getString(R.string.auto_hide_statusbar_off));
+        } else {
+            mStatusBarAutoHide.setSummary(getResources().getString(value == 1
+                    ? R.string.auto_hide_statusbar_summary_nonperm
+                    : R.string.auto_hide_statusbar_summary_all));
+        }
+    } 
 
     @Override
     public void onResume() {

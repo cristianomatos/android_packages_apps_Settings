@@ -86,7 +86,8 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private CheckBoxPreference mHomeWake;
     private CheckBoxPreference mVolumeWake;
     private Preference mCustomLabel; 
-    private CheckBoxPreference mDualPanel; 
+    private CheckBoxPreference mDualPanel;
+    private CheckBoxPreference mWakeUpWhenPluggedOrUnplugged;  
     private PreferenceScreen mDisplayRotationPreference;
     private WarnedListPreference mFontSizePref;
 
