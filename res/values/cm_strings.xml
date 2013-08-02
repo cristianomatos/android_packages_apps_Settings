@@ -1111,6 +1111,16 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
  	
     <!-- Statusbar Quick Peek -->
     <string name="statusbar_quick_peek_title">Quick Peek</string>
-    <string name="statusbar_quick_peek_summary">Peek at statusbar by swiping from top edge of screen</string>  
+    <string name="statusbar_quick_peek_summary">Peek at statusbar by swiping from top edge of screen</string>
+
+    <!-- Pie colors -->
+    <string name="pie_control_color_settings">Pie Color Settings</string>
+    <string name="pie_control_color_normal">Normal background</string>
+    <string name="pie_control_color_selected">Selected background</string>
+    <string name="pie_control_color_longpressed">Long pressed background</string>
+    <string name="pie_control_color_icon">Icon color</string>
+    <string name="pie_control_outline">Show outline</string>
+    <string name="pie_control_color_title">Edit color setting</string>
+    <string name="pie_control_color_reset">Reset</string>   
 
 </resources>

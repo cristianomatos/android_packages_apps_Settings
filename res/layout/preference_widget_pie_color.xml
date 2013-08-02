@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Layout used by PieColorPreference. This is inflated
+     inside android.R.layout.preference. -->
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pie_color"
+    android:layout_width="32dip"
+    android:layout_height="32dip"
+    android:layout_gravity="center"
+    android:focusable="false"
+    android:clickable="false" /> 

@@ -65,4 +65,40 @@
             android:persistent="false"
             android:defaultValue="false" />
    </PreferenceCategory>
+
+   </PreferenceCategory>
+
+   <PreferenceCategory
+        android:title="@string/pie_control_color_settings">
+
+        <com.android.settings.cyanogenmod.PieColorPreference
+            android:key="pie_control_color_normal"
+            android:title="@string/pie_control_color_normal"
+            android:defaultValue="FFFFBF00"
+            android:persistent="false" />
+
+        <com.android.settings.cyanogenmod.PieColorPreference
+            android:key="pie_control_color_selected"
+            android:title="@string/pie_control_color_selected"
+            android:defaultValue="FFBFFF00"
+            android:persistent="false" />
+
+        <com.android.settings.cyanogenmod.PieColorPreference
+            android:key="pie_control_color_longpressed"
+            android:title="@string/pie_control_color_longpressed"
+            android:defaultValue="FF8A0808"
+            android:persistent="false" />
+
+        <com.android.settings.cyanogenmod.PieColorPreference
+            android:key="pie_control_color_icon"
+            android:title="@string/pie_control_color_icon"
+            android:defaultValue="FFFFFFFF"
+            android:persistent="false" />
+
+        <CheckBoxPreference
+            android:key="pie_control_outline"
+            android:title="@string/pie_control_outline"
+            android:defaultValue="false"
+            android:persistent="false" />
+    </PreferenceCategory> 	
 </PreferenceScreen>
