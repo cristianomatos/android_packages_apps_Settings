@@ -66,8 +66,6 @@
             android:defaultValue="false" />
    </PreferenceCategory>
 
-   </PreferenceCategory>
-
    <PreferenceCategory
         android:title="@string/pie_control_color_settings">
 
