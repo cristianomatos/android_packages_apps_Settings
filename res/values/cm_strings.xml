@@ -1097,4 +1097,8 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="status_bar_battery_circle_style_reset">Reset battery circle colors</string>
     <string name="status_bar_battery_bar_style_reset">Reset battery bar colors</string>       
     
+    <!-- Wakeup When Plugged -->
+    <string name="wakeup_when_plugged_unplugged_title">Wake up on charger</string>
+    <string name="wakeup_when_plugged_unplugged_summary">Wake up device if a charger is plugged/unplugged.</string> 
+ 	
 </resources>
