@@ -1121,6 +1121,60 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="pie_control_color_icon">Icon color</string>
     <string name="pie_control_outline">Show outline</string>
     <string name="pie_control_color_title">Edit color setting</string>
-    <string name="pie_control_color_reset">Reset</string>   
+    <string name="pie_control_color_reset">Reset</string>
+
+    <!-- Navigation bar custom options -->
+    <string name="navbar_cat">Navigation bar settings</string>
+    <string name="navbar_style_dimen_title">Navigation bar dimensions</string>
+    <string name="navbar_restart_systemui_summary">Change this option will restart SystemUI</string>
+    <string name="menu_nav_bar_style_reset">Reset navbar style</string>
+    <string name="menu_nav_bar_dimen_reset">Reset navbar dimens</string>
+    <string name="navbar_dimen_cat">Navigation bar dimens</string>
+    <string name="navigation_bar">Navigation bar settings</string>
+    <string name="navigation_bar_option">Enable/Disable Navigation bar</string>
+    <string name="navigation_bar_background">Navigation bar background</string> 
+    <string name="navbar_enable_bar">Enable bar</string>
+    <string name="navigation_bar_height_title">Navigation bar height</string>
+    <string name="navigation_bar_height_summary">Navigation Bar height while in portrait.</string>
+    <string name="navigation_bar_height_landscape_title">Navigation bar height landscape</string>
+    <string name="navigation_bar_height_landscape_summary">Navigation Bar height while in landscape.</string>
+    <string name="navigation_bar_width_title">Navigation bar width</string>
+    <string name="navigation_bar_width_summary">Navigation Bar height if the bar is along a side.</string>
+    <string name="size_42_dp_default">42 dp (default)</string>
+    <string name="size_36_dp">36 dp</string>
+    <string name="size_30_dp">30 dp</string>
+    <string name="size_24_dp">24 dp</string>
+    <string name="size_48_dp_default">48 dp (default)</string>
+    <string name="size_44_dp">44 dp</string>
+    <string name="size_40_dp">40 dp</string>
+    <string name="size_42_dp">42 dp</string>
+    <string name="size_0_dp">0 dp (off)</string> 
+
+    <!-- Navigation bar background style -->
+    <string name="nav_bar_transparency_title">Navigation bar transparency</string>
+    <string name="nav_bar_color_title">Navigation bar color</string>
+    <string name="nav_bar_background_style">Navigation bar background</string>
+    <string name="nav_bar_alpha_mode_dialog_text_title">Show navigation and status bar transparency</string>
+    <string name="nav_bar_alpha_mode_text_title">Transparency mode</string>
+    <string name="nav_bar_alpha_mode_home">on launcher</string>
+    <string name="nav_bar_alpha_mode_default">on launcher and lockscreen</string>
+    <string name="nav_bar_alpha_mode_always">always</string>
+    <string name="nav_bar_style_reset">Reset</string>  
+
+    <!-- Status bar background style -->
+    <string name="status_bar_transparency_title">Status bar transparency</string>
+    <string name="status_bar_color_title">Status bar color</string>
+    <string name="status_bar_background_style">Background style</string>
+    <string name="status_bar_alpha_mode_dialog_text_title">Show status bar transparency</string>
+    <string name="status_bar_alpha_mode_text_title">Transparency mode</string>
+    <string name="status_bar_alpha_mode_home">on launcher</string>
+    <string name="status_bar_alpha_mode_default">on launcher and keyguard</string>
+    <string name="status_bar_alpha_mode_always">always</string>
+    <string name="status_bar_style_reset">Reset</string>   
+
+    <!-- Shortcut picker -->
+    <string name="use_custom_app_title">Use custom application</string>
+    <string name="use_custom_app_summary">Use custom application instead of the recent applications dialog</string>
+    <string name="group_applications">Applications</string> 
 
 </resources>

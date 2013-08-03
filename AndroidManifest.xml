@@ -1692,10 +1692,15 @@
 
         <activity android:name=".cyanogenmod.QuickSettings" />
 
-	<!-- crDroid custom activities -->
 	<activity android:name=".cyanogenmod.StatusBar" />
-        <activity android:name=".cyanogenmod.StatusBarClockStyle" /> 
-
+        
+	<!-- crDroid custom activities -->
+	<activity android:name=".cyanogenmod.StatusBarStyle" />
+	<activity android:name=".cyanogenmod.StatusBarClockStyle" /> 	
+	<activity android:name=".cyanogenmod.NavBarStyle" />
+	<activity android:name=".cyanogenmod.NavBarDimen" />
+        <activity android:name=".cyanogenmod.NavBarSettings" />
+	
         <!-- "Blacklist settings" UI, used only on voice-capable phone devices. -->
         <activity android:name="Settings$BlacklistSettingsActivity"
                 android:theme="@android:style/Theme.Holo.DialogWhenLarge"
