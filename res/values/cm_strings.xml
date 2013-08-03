@@ -1190,6 +1190,13 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="notification_behaviour_title">Notification behavior</string>
     <string name="additional_options_title">Notification behavior options</string> 
 
+    <!-- Notification drawer brigthness slider -->
+    <string name="power_widget_additional_options_cat">Additional options</string>
+    <string name="brightness_location_title">Brightness slider location</string>
+    <string name="brightness_slider_top">On top</string>
+    <string name="brightness_slider_bottom">On the bottom</string>
+    <string name="brightness_slider_none">Do not Show</string> 
+
     <!-- Shortcut picker -->
     <string name="use_custom_app_title">Use custom application</string>
     <string name="use_custom_app_summary">Use custom application instead of the recent applications dialog</string>

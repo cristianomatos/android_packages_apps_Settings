@@ -61,7 +61,8 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
     private static final String TAG = "PowerWidget";
     private static final String SEPARATOR = "OV=I=XseparatorX=I=VO";
     private static final String UI_COLLAPSE_BEHAVIOUR = "notification_drawer_collapse_on_dismiss";
-    private static final String UI_NOTIFICATION_BEHAVIOUR = "notifications_behaviour"; 
+    private static final String UI_NOTIFICATION_BEHAVIOUR = "notifications_behaviour";
+    private static final String UI_BRIGHTNESS_LOC = "brightness_location"; 
     private static final String UI_EXP_WIDGET = "expanded_widget";
     private static final String UI_EXP_WIDGET_HIDE_ONCHANGE = "expanded_hide_onchange";
     private static final String UI_EXP_WIDGET_HIDE_SCROLLBAR = "expanded_hide_scrollbar";
@@ -72,7 +73,8 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
     private CheckBoxPreference mPowerWidgetHideOnChange;
     private CheckBoxPreference mPowerWidgetHideScrollBar;
     private ListPreference mPowerWidgetHapticFeedback;
-    private ListPreference mNotificationsBehavior; 
+    private ListPreference mNotificationsBehavior;
+    private ListPreference mBrightnessLocation;  
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -120,6 +122,12 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
             mNotificationsBehavior.setValue(String.valueOf(CurrentBehavior));
             mNotificationsBehavior.setSummary(mNotificationsBehavior.getEntry());
             mNotificationsBehavior.setOnPreferenceChangeListener(this); 
+
+	    mBrightnessLocation = (ListPreference) findPreference(UI_BRIGHTNESS_LOC);
+            mBrightnessLocation.setOnPreferenceChangeListener(this);
+            mBrightnessLocation.setValue(Integer.toString(Settings.System.getInt(getActivity()
+                    .getContentResolver(), Settings.System.STATUSBAR_TOGGLES_BRIGHTNESS_LOC, 3)));
+            mBrightnessLocation.setSummary(mBrightnessLocation.getEntry()); 
         }
     }
 
@@ -167,6 +175,13 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
             Integer.valueOf(val));
             int index = mNotificationsBehavior.findIndexOfValue(val);
             mNotificationsBehavior.setSummary(mNotificationsBehavior.getEntries()[index]);
+            return true; 
+	} else if (preference == mBrightnessLocation) {
+            int val = Integer.parseInt((String) newValue);
+            int index = mBrightnessLocation.findIndexOfValue((String) newValue);
+            Settings.System.putInt(getActivity().getContentResolver(),
+            Settings.System.STATUSBAR_TOGGLES_BRIGHTNESS_LOC, val);
+            mBrightnessLocation.setSummary(mBrightnessLocation.getEntries()[index]);
             return true; 
         }
 

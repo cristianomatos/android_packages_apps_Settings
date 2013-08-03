@@ -37,7 +37,15 @@
         android:fragment="com.android.settings.cyanogenmod.NotificationDrawerStyle"
         android:key="notification_style"
         android:title="@string/notification_style_title"
-        android:summary="@string/notification_style_summary" />       
+        android:summary="@string/notification_style_summary" />
+
+    <!-- Notification drawer brightness slider -->
+    <ListPreference
+        android:key="brightness_location"
+        android:entries="@array/brightness_location_entries"
+        android:entryValues="@array/brightness_location_values"
+        android:title="@string/brightness_location_title"
+        android:dependency="expanded_widget" />        
 
     <!-- Notification drawer Power Widget -->
     <PreferenceCategory
