@@ -70,6 +70,12 @@
             android:entryValues="@array/haptic_feedback_values"
             android:dependency="expanded_widget" />
 
+        <Preference
+            android:fragment="com.android.settings.cyanogenmod.NotificationDrawerStyle"
+            android:key="notification_style"
+            android:title="@string/notification_style_title"
+            android:summary="@string/notification_style_summary" />       
+
     </PreferenceCategory>
 
 </PreferenceScreen>

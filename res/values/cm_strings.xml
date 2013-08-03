@@ -1126,7 +1126,6 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <!-- Navigation bar custom options -->
     <string name="navbar_cat">Navigation bar settings</string>
     <string name="navbar_style_dimen_title">Navigation bar dimensions</string>
-    <string name="navbar_restart_systemui_summary">Change this option will restart SystemUI</string>
     <string name="menu_nav_bar_style_reset">Reset navbar style</string>
     <string name="menu_nav_bar_dimen_reset">Reset navbar dimens</string>
     <string name="navbar_dimen_cat">Navigation bar dimens</string>
@@ -1171,6 +1170,21 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="status_bar_alpha_mode_default">on launcher and keyguard</string>
     <string name="status_bar_alpha_mode_always">always</string>
     <string name="status_bar_style_reset">Reset</string>   
+
+    <!-- Notification Drawer Settings -->
+    <string name="notification_style_grouptitle">Style</string>
+    <string name="notification_style_title">Notification drawer style</string>
+    <string name="notification_style_summary">Change your notification drawer style</string> 
+
+    <!-- Notification drawer background -->
+    <string name="notification_wallpaper_title">Notification drawer background</string>
+    <string name="notification_wallpaper_landscape_title">Different landscape background</string>
+    <string name="notification_background_color_fill">Color fill</string>
+    <string name="notification_background_custom_image">Custom image</string>
+    <string name="notification_background_default_wallpaper">Default background</string>
+    <string name="notification_drawer_custom_background_dialog_title">Choose color</string>
+    <string name="notif_wallpaper_alpha_title">Notification background transparency</string> 
+    <string name="notif_alpha_title">Notification Rows transparency</string>  
 
     <!-- Shortcut picker -->
     <string name="use_custom_app_title">Use custom application</string>
