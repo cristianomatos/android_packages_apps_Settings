@@ -1186,6 +1186,10 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="notif_wallpaper_alpha_title">Notification background transparency</string> 
     <string name="notif_alpha_title">Notification Rows transparency</string>  
 
+    <!-- Notification Behavior -->
+    <string name="notification_behaviour_title">Notification behavior</string>
+    <string name="additional_options_title">Notification behavior options</string> 
+
     <!-- Shortcut picker -->
     <string name="use_custom_app_title">Use custom application</string>
     <string name="use_custom_app_summary">Use custom application instead of the recent applications dialog</string>
