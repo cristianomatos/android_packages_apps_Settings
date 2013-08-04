@@ -58,6 +58,12 @@ limitations under the License.
             android:entries="@array/entries_halo_size"
 	    android:dependency="halo_enabled" 
             android:entryValues="@array/values_halo_size" />
+
+    	<CheckBoxPreference
+            android:key="halo_pause"
+            android:title="@string/halo_pause_title"
+	    android:dependency="halo_enabled" 
+            android:summary="@string/halo_pause_summary" />
         
     </PreferenceCategory>
 
