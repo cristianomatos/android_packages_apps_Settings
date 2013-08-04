@@ -93,6 +93,13 @@
         android:fragment="com.android.settings.cyanogenmod.SystemSettings"
         android:title="@string/system_settings_title" />
 
+    <!-- Halo -->
+    <header
+        android:id="@+id/halo_settings"
+        android:fragment="com.android.settings.cyanogenmod.HaloSettings"
+        android:icon="@drawable/ic_settings_status_bar" 
+        android:title="@string/halo_settings" />  
+
     <!-- DEVICE -->
     <header android:id="@+id/device_section"
         android:title="@string/header_category_device" />
