@@ -45,10 +45,12 @@ public class HaloSettings extends SettingsPreferenceFragment
     private static final String KEY_HALO_STATE = "halo_state";
     private static final String KEY_HALO_HIDE = "halo_hide";
     private static final String KEY_HALO_REVERSED = "halo_reversed";
+    private static final String KEY_HALO_SIZE = "halo_size";
     
     private ListPreference mHaloState;
     private CheckBoxPreference mHaloHide;
     private CheckBoxPreference mHaloReversed;
+    private ListPreference mHaloSize;
     
     private Context mContext;
     private INotificationManager mNotificationManager;
@@ -76,6 +78,16 @@ public class HaloSettings extends SettingsPreferenceFragment
         mHaloReversed = (CheckBoxPreference) prefSet.findPreference(KEY_HALO_REVERSED);
         mHaloReversed.setChecked(Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.HALO_REVERSED, 1) == 1);
+
+	mHaloSize = (ListPreference) prefSet.findPreference(KEY_HALO_SIZE);
+        try {
+            float haloSize = Settings.System.getFloat(mContext.getContentResolver(),
+                    Settings.System.HALO_SIZE, 1.0f);
+            mHaloSize.setValue(String.valueOf(haloSize));  
+        } catch(Exception ex) {
+            // So what
+        }
+        mHaloSize.setOnPreferenceChangeListener(this);
     }
 
     private boolean isHaloPolicyBlack() {
@@ -109,6 +121,11 @@ public class HaloSettings extends SettingsPreferenceFragment
             } catch (android.os.RemoteException ex) {
                 // System dead
             }
+            return true;
+	} else if (preference == mHaloSize) {
+            float haloSize = Float.valueOf((String) newValue);
+            Settings.System.putFloat(getActivity().getContentResolver(),
+                    Settings.System.HALO_SIZE, haloSize);
             return true;
         }
         return false;
