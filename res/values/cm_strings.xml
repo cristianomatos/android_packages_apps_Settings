@@ -1224,6 +1224,9 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="halo_size_gigantic">Gigantic</string>
     <string name="halo_size_monster">Monster</string>
 
+    <string name="halo_enabled_title">Enable HALO</string>
+    <string name="halo_enabled_summary">Completely enable or disable HALO</string> 
+
     <!-- Shortcut picker -->
     <string name="use_custom_app_title">Use custom application</string>
     <string name="use_custom_app_summary">Use custom application instead of the recent applications dialog</string>
