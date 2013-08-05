@@ -1251,7 +1251,11 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
  
     <!-- Screen-On Notification Light -->
     <string name="screen_on_notification_led_title">Screen-On Notification Light</string>
-    <string name="screen_on_notification_led_summary">Enable Notification Light even when screen is on</string>   
+    <string name="screen_on_notification_led_summary">Enable Notification Light even when screen is on</string>
+
+    <!-- Network speed -->
+    <string name="show_network_speed">Network speed indicator</string>
+    <string name="show_network_speed_summary">Show network speed in statusbar</string>    
 
     <!-- Shortcut picker -->
     <string name="use_custom_app_title">Use custom application</string>
