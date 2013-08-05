@@ -765,6 +765,7 @@
     <string name="quick_pulldown_off">Off</string>
     <string name="quick_pulldown_left">Left</string>
     <string name="quick_pulldown_right">Right</string>
+    <string name="no_notifications_pulldown_summary_nonperm">Pulldown quick settings if no non-permanent notifications are present</string>
     <string name="title_collapse_panel">Auto close panel</string>
     <string name="summary_collapse_panel">Close the Quick Settings panel upon toggle</string>
 
@@ -1238,7 +1239,15 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="low_battery_warning_policy_popup">Pop-up dialog only</string>
     <string name="low_battery_warning_policy_notif">Notification only</string>
     <string name="low_battery_warning_policy_sound">Sound only</string>
-    <string name="low_battery_warning_policy_disabled">Disabled</string>  
+    <string name="low_battery_warning_policy_disabled">Disabled</string>
+
+    <!-- Quick puldown modes -->
+    <string name="no_notifications_pulldown_summary_nonperm">Pulldown quick settings if no non-permanent notifications are present</string>
+    <string name="no_notifications_pulldown_summary_all">Pulldown quick settings if no notifications are present</string>
+    <string name="no_notifications_pulldown_off">Off</string>
+    <string name="no_notifications_pulldown_nonperm">Non-permanent only</string>
+    <string name="no_notifications_pulldown_all">All Notifications</string>
+    <string name="title_no_notifications_pulldown">Quick pulldown without notifications</string>      
  
     <!-- Shortcut picker -->
     <string name="use_custom_app_title">Use custom application</string>
