@@ -64,6 +64,12 @@ limitations under the License.
             android:title="@string/halo_pause_title"
 	    android:dependency="halo_enabled" 
             android:summary="@string/halo_pause_summary" />
+
+	<CheckBoxPreference
+            android:key="show_popup"
+            android:title="@string/popups_title"
+            android:summary="@string/popups_summary"
+            android:defaultValue="true" />
         
     </PreferenceCategory>
 
