@@ -1255,7 +1255,13 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
 
     <!-- Network speed -->
     <string name="show_network_speed">Network speed indicator</string>
-    <string name="show_network_speed_summary">Show network speed in statusbar</string>    
+    <string name="show_network_speed_summary">Show network speed in statusbar</string>
+
+    <!-- Network speed color style -->
+    <string name="network_speed_color_title">Network speed color</string>
+    <string name="network_speed_color_style">Color style</string>
+    <string name="network_speed_color_reset">Reset</string>
+    <string name="network_speed_color_summary">Change the color of network speed indicator</string>    
 
     <!-- Shortcut picker -->
     <string name="use_custom_app_title">Use custom application</string>
