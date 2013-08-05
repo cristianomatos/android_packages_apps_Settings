@@ -66,6 +66,12 @@
         android:title="@string/notification_pulse_title"
         android:fragment="com.android.settings.notificationlight.NotificationLightSettings" />
 
+    <CheckBoxPreference
+        android:key="screen_on_notification_led"
+        android:title="@string/screen_on_notification_led_title"
+        android:summary="@string/screen_on_notification_led_summary"
+        android:defaultValue="true" /> 
+
     <PreferenceScreen
         android:key="battery_light"
         android:title="@string/battery_light_title"

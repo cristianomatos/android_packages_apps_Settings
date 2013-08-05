@@ -1249,6 +1249,10 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="no_notifications_pulldown_all">All Notifications</string>
     <string name="title_no_notifications_pulldown">Quick pulldown without notifications</string>      
  
+    <!-- Screen-On Notification Light -->
+    <string name="screen_on_notification_led_title">Screen-On Notification Light</string>
+    <string name="screen_on_notification_led_summary">Enable Notification Light even when screen is on</string>   
+
     <!-- Shortcut picker -->
     <string name="use_custom_app_title">Use custom application</string>
     <string name="use_custom_app_summary">Use custom application instead of the recent applications dialog</string>
