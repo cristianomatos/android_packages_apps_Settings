@@ -176,7 +176,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         if (mButtonWake != null) { 
             if (!res.getBoolean(R.bool.config_show_homeWake)) {
                 //no home button, don't allow user to disable power button either
-                mWakeUpOptions.removePreference(mButtonWake); 
+                wakeupCategory.removePreference(mButtonWake);  
             } else {
                 int buttonWakeValue = Settings.System.getInt(resolver,
                         Settings.System.BUTTON_WAKE_SCREEN, 2);
@@ -531,7 +531,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                     Settings.System.BUTTON_WAKE_SCREEN, buttonWakeValue);
             mButtonWake.setSummary(getResources().getString(R.string.pref_wakeon_button_summary, mButtonWake.getEntries()[index]));
             return true; 
-
+	}
         if (KEY_FONT_SIZE.equals(key)) {
             writeFontSizePreference(objValue);
         }
