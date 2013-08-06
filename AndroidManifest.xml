@@ -1708,6 +1708,14 @@
         <activity android:name=".cyanogenmod.NavBarSettings" />
 	<activity android:name=".cyanogenmod.HaloSettings" />  
 	
+	<activity
+            android:name=".cyanogenmod.DensityChanger"
+            android:label="@string/lcd_density_wizard" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>   
+
         <!-- "Blacklist settings" UI, used only on voice-capable phone devices. -->
         <activity android:name="Settings$BlacklistSettingsActivity"
                 android:theme="@android:style/Theme.Holo.DialogWhenLarge"
