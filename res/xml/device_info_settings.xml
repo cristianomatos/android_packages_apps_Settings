@@ -165,6 +165,12 @@
                 android:title="@string/mod_version"
                 android:summary="@string/mod_version_default" />
 
+	<!-- crDroid version -->
+        <Preference android:key="crDroid_version"
+                style="?android:preferenceInformationStyle"
+                android:title="@string/crDroid_version"
+                android:summary="@string/crDroid_version_default" />
+
         <!-- Mod build date -->
         <Preference android:key="build_date"
                 style="?android:preferenceInformationStyle"
