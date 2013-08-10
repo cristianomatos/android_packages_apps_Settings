@@ -41,21 +41,16 @@ import com.android.settings.SettingsPreferenceFragment;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern; 
 
-public class SystemSettings extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener { 
+public class SystemUiSettings extends SettingsPreferenceFragment implements Preference.OnPreferenceChangeListener { 
     private static final String TAG = "SystemSettings";
 
-    private static final String KEY_NOTIFICATION_PULSE = "notification_pulse";
-    private static final String KEY_BATTERY_LIGHT = "battery_light";
-    private static final String KEY_HARDWARE_KEYS = "hardware_keys";
     private static final String KEY_NAVIGATION_BAR = "navigation_bar";
     private static final String KEY_NAVIGATION_RING = "navigation_ring";
     private static final String KEY_NAVIGATION_BAR_CATEGORY = "navigation_bar_category";
 
-    private static final String KEY_LOCK_CLOCK = "lock_clock";
     private static final String KEY_STATUS_BAR = "status_bar";
     private static final String KEY_QUICK_SETTINGS = "quick_settings_panel";
     private static final String KEY_NOTIFICATION_DRAWER = "notification_drawer";
-    private static final String KEY_POWER_MENU = "power_menu";
     private static final String KEY_PIE_CONTROL = "pie_control";
     private static final String KEY_EXPANDED_DESKTOP = "expanded_desktop";
     private static final String KEY_EXPANDED_DESKTOP_NO_NAVBAR = "expanded_desktop_no_navbar";
@@ -63,8 +58,6 @@ public class SystemSettings extends SettingsPreferenceFragment implements Prefer
     private static final String KEY_SCREEN_ON_NOTIFICATION_LED = "screen_on_notification_led";
     private static final String KEY_RECENTS_RAM_BAR = "recents_ram_bar";  
 
-    private PreferenceScreen mNotificationPulse;
-    private PreferenceScreen mBatteryPulse;
     private PreferenceScreen mPieControl;
     private ListPreference mExpandedDesktopPref;
     private CheckBoxPreference mExpandedDesktopNoNavbarPref;
@@ -78,7 +71,7 @@ public class SystemSettings extends SettingsPreferenceFragment implements Prefer
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        addPreferencesFromResource(R.xml.system_settings);
+        addPreferencesFromResource(R.xml.system_ui_settings);
         PreferenceScreen prefScreen = getPreferenceScreen();
 
 	// Only show the hardware keys config on a device that does not have a navbar
@@ -95,48 +88,17 @@ public class SystemSettings extends SettingsPreferenceFragment implements Prefer
             if (windowManager.hasNavigationBar()) {
                 removeKeys = true;
             //} else {
-                //removeNavbar = true;
+            //   removeNavbar = true;
             }
         } catch (RemoteException e) {
             // Do nothing
         }
 
-        if (removeKeys) {
-            prefScreen.removePreference(findPreference(KEY_HARDWARE_KEYS));
-        }
         //if (removeNavbar) {
         //    prefScreen.removePreference(navbarCategory);
         //}
 
-        // Determine which user is logged in
-        mIsPrimary = UserHandle.myUserId() == UserHandle.USER_OWNER;
-        if (mIsPrimary) {
-            // Primary user only preferences
-            // Battery lights
-            mBatteryPulse = (PreferenceScreen) findPreference(KEY_BATTERY_LIGHT);
-            if (mBatteryPulse != null) {
-                if (getResources().getBoolean(
-                        com.android.internal.R.bool.config_intrusiveBatteryLed) == false) {
-                    prefScreen.removePreference(mBatteryPulse);
-                    mBatteryPulse = null;
-                }
-            }
-        } else {
-            // Secondary user is logged in, remove all primary user specific preferences
-            prefScreen.removePreference(findPreference(KEY_BATTERY_LIGHT));
-        }
-
-        // Preferences that applies to all users
-        // Notification lights
-        mNotificationPulse = (PreferenceScreen) findPreference(KEY_NOTIFICATION_PULSE);
-        if (mNotificationPulse != null) {
-            if (!getResources().getBoolean(com.android.internal.R.bool.config_intrusiveNotificationLed)) {
-                prefScreen.removePreference(mNotificationPulse);
-                mNotificationPulse = null;
-            }
-        }
-
-	// Low battery warning
+        // Low battery warning
 	mLowBatteryWarning = (ListPreference) findPreference(KEY_LOW_BATTERY_WARNING_POLICY);
         int lowBatteryWarning = Settings.System.getInt(getActivity().getContentResolver(),
                                     Settings.System.POWER_UI_LOW_BATTERY_WARNING_POLICY, 0);
@@ -189,9 +151,6 @@ public class SystemSettings extends SettingsPreferenceFragment implements Prefer
         } catch (RemoteException e) {
             Log.e(TAG, "Error getting navigation bar status");
         }	
-
-        // Don't display the lock clock preference if its not installed
-        removePreferenceIfPackageNotInstalled(findPreference(KEY_LOCK_CLOCK));
     }
 
     @Override
@@ -199,17 +158,8 @@ public class SystemSettings extends SettingsPreferenceFragment implements Prefer
         super.onResume();
 	updateRamBar();
 
-        // All users
-        if (mNotificationPulse != null) {
-            updateLightPulseDescription();
-        }
         if (mPieControl != null) {
             updatePieControlDescription();
-        }
-
-        // Primary user only
-        if (mIsPrimary && mBatteryPulse != null) {
-            updateBatteryPulseDescription();
         }
     }
 
@@ -261,24 +211,6 @@ public class SystemSettings extends SettingsPreferenceFragment implements Prefer
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     } 
-
-    private void updateLightPulseDescription() {
-        if (Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.NOTIFICATION_LIGHT_PULSE, 0) == 1) {
-            mNotificationPulse.setSummary(getString(R.string.notification_light_enabled));
-        } else {
-            mNotificationPulse.setSummary(getString(R.string.notification_light_disabled));
-        }
-    }
-
-    private void updateBatteryPulseDescription() {
-        if (Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.BATTERY_LIGHT_ENABLED, 1) == 1) {
-            mBatteryPulse.setSummary(getString(R.string.notification_light_enabled));
-        } else {
-            mBatteryPulse.setSummary(getString(R.string.notification_light_disabled));
-        }
-     }
 
     private void updatePieControlDescription() {
         if (Settings.System.getInt(getActivity().getContentResolver(),
