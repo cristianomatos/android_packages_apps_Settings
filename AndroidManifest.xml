@@ -1714,7 +1714,8 @@
         <activity android:name=".cyanogenmod.NavBarSettings" />
 	<activity android:name=".cyanogenmod.HaloSettings" />
 	<activity android:name=".RamBar" />        
-	
+	<activity android:name=".cyanogenmod.KeyboardInputSettings" />	
+
 	<activity
             android:name=".cyanogenmod.DensityChanger"
             android:label="@string/lcd_density_wizard" >
