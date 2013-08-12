@@ -74,6 +74,11 @@ limitations under the License.
         android:summary="@string/title_ui_summary" />
 
     <PreferenceScreen
+        android:key="recents_ram_bar"
+        android:fragment="com.android.settings.RamBar"
+        android:title="@string/ram_bar" />	
+
+    <PreferenceScreen
         android:key="notification_pulse"
         android:title="@string/notification_pulse_title"
         android:fragment="com.android.settings.notificationlight.NotificationLightSettings" />

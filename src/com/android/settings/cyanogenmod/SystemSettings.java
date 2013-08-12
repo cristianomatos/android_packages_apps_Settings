@@ -60,7 +60,8 @@ public class SystemSettings extends SettingsPreferenceFragment implements Prefer
     private static final String KEY_EXPANDED_DESKTOP = "expanded_desktop";
     private static final String KEY_EXPANDED_DESKTOP_NO_NAVBAR = "expanded_desktop_no_navbar";
     private static final String KEY_LOW_BATTERY_WARNING_POLICY = "pref_low_battery_warning_policy";
-    private static final String KEY_SCREEN_ON_NOTIFICATION_LED = "screen_on_notification_led";  
+    private static final String KEY_SCREEN_ON_NOTIFICATION_LED = "screen_on_notification_led";
+    private static final String KEY_RECENTS_RAM_BAR = "recents_ram_bar";  
 
     private PreferenceScreen mNotificationPulse;
     private PreferenceScreen mBatteryPulse;
@@ -68,7 +69,8 @@ public class SystemSettings extends SettingsPreferenceFragment implements Prefer
     private ListPreference mExpandedDesktopPref;
     private CheckBoxPreference mExpandedDesktopNoNavbarPref;
     private ListPreference mLowBatteryWarning;
-    private CheckBoxPreference mScreenOnNotificationLed;  
+    private CheckBoxPreference mScreenOnNotificationLed;
+    private Preference mRamBar;  
     
     private boolean mIsPrimary;
 
@@ -140,7 +142,10 @@ public class SystemSettings extends SettingsPreferenceFragment implements Prefer
                                     Settings.System.POWER_UI_LOW_BATTERY_WARNING_POLICY, 0);
         mLowBatteryWarning.setValue(String.valueOf(lowBatteryWarning));
         mLowBatteryWarning.setSummary(mLowBatteryWarning.getEntry());
-        mLowBatteryWarning.setOnPreferenceChangeListener(this);  
+        mLowBatteryWarning.setOnPreferenceChangeListener(this);
+
+	mRamBar = findPreference(KEY_RECENTS_RAM_BAR);
+        updateRamBar();  
 
 	int statusScreenOnNotificationLed = Settings.System.getInt(getContentResolver(),
                 Settings.System.SCREEN_ON_NOTIFICATION_LED, 1);
@@ -192,6 +197,7 @@ public class SystemSettings extends SettingsPreferenceFragment implements Prefer
     @Override
     public void onResume() {
         super.onResume();
+	updateRamBar();
 
         // All users
         if (mNotificationPulse != null) {
@@ -210,6 +216,16 @@ public class SystemSettings extends SettingsPreferenceFragment implements Prefer
     @Override
     public void onPause() {
         super.onPause();
+	updateRamBar();
+    }
+
+    private void updateRamBar() {
+        int ramBarMode = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
+                Settings.System.RECENTS_RAM_BAR_MODE, 0);
+        if (ramBarMode != 0)
+            mRamBar.setSummary(getResources().getString(R.string.ram_bar_color_enabled));
+        else
+            mRamBar.setSummary(getResources().getString(R.string.ram_bar_color_disabled));
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
