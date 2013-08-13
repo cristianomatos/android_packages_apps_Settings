@@ -224,10 +224,10 @@ public class StatusBar extends SettingsPreferenceFragment
 
         mBatteryBarThickness = (ListPreference) findPreference(PREF_BATT_BAR_WIDTH);
         mBatteryBarThickness.setOnPreferenceChangeListener(this);
-        mBatteryBarThickness.setValue((Settings.System.getInt(getActivity()
-                .getContentResolver(),
-                Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS, 1))
-                + ""); 
+	int batteryBarThickness = Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.STATUSBAR_BATTERY_BAR_THICKNESS, 1);
+        mBatteryBarThickness.setValue(String.valueOf(batteryBarThickness));
+        mBatteryBarThickness.setSummary(mBatteryBarThickness.getEntry()); 
 
 	mStatusBarAutoHide = (ListPreference) prefSet.findPreference(PREF_STATUS_BAR_AUTO_HIDE);
         int statusBarAutoHideValue = Settings.System.getInt(getActivity().getApplicationContext().getContentResolver(),
@@ -263,7 +263,7 @@ public class StatusBar extends SettingsPreferenceFragment
         return prefSet;
     }
 
-     @Override
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.status_bar_battery_style, menu);
@@ -295,7 +295,6 @@ public class StatusBar extends SettingsPreferenceFragment
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.STATUS_BAR_BATTERY, statusBarBattery);
             mStatusBarBattery.setSummary(mStatusBarBattery.getEntries()[index]);
-            createCustomView();
             return true;
         } else if (preference == mCircleColor) {
             String hex = ColorPickerPreference.convertToARGB(Integer
@@ -348,7 +347,6 @@ public class StatusBar extends SettingsPreferenceFragment
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.STATUSBAR_BATTERY_BAR, val);
             mBatteryBar.setSummary(mBatteryBar.getEntries()[index]);
-            createCustomView();
             return true;
         } else if (preference == mBatteryBarStyle) {
             int val = Integer.parseInt((String) newValue);
@@ -357,12 +355,7 @@ public class StatusBar extends SettingsPreferenceFragment
                     Settings.System.STATUSBAR_BATTERY_BAR_STYLE, val);
             mBatteryBarStyle.setSummary(mBatteryBarStyle.getEntries()[index]);
             return true;
-	} else if (preference == mBatteryBarChargingAnimation) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE,
-                    (Boolean) newValue ? 1 : 0);
-            return true;
-        } else if (preference == mBatteryBarThickness) {
+	} else if (preference == mBatteryBarThickness) {
             int val = Integer.parseInt((String) newValue);
             int index = mBatteryBarThickness.findIndexOfValue((String) newValue);
             Settings.System.putInt(getActivity().getContentResolver(),
@@ -398,15 +391,15 @@ public class StatusBar extends SettingsPreferenceFragment
                     Settings.System.STATUSBAR_PEEK, value ? 1 : 0);
             return true; 
 	} else if (preference == mStatusBarTraffic) {
-             value = mStatusBarTraffic.isChecked();
-             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+            value = mStatusBarTraffic.isChecked();
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                      Settings.System.STATUS_BAR_TRAFFIC, value ? 1 : 0);
             return true;         
-	//} else if (preference == mBatteryBarChargingAnimation) {
-        //    Settings.System.putInt(getActivity().getContentResolver(),
-        //            Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE,
-        //            ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
-        //    return true;
+	} else if (preference == mBatteryBarChargingAnimation) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STATUSBAR_BATTERY_BAR_ANIMATE,
+                    ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
+            return true;
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference); 
     }
