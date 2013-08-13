@@ -1327,8 +1327,8 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="app_sidebar_title">Appbar</string>
     <string name="app_sidebar_enable_title">Enable Appbar</string>
     <string name="app_sidebar_summary">Customize your app sidebar</string>
-    <string name="app_sidebar_enable_summaryOn">\@appbar is enabled</string>
-    <string name="app_sidebar_enable_summaryOff">\@appbar is disabled</string>
+    <string name="app_sidebar_enable_summaryOn">Appbar is enabled</string>
+    <string name="app_sidebar_enable_summaryOff">Appbar is disabled</string>
     <string name="app_sidebar_setup_items_title">Setup Appbar content</string>
     <string name="app_sidebar_setup_items_summary">Add, remove, and position items in the @ppbar</string>
     <string name="app_sidebar_transparency_title">Appbar transparency</string>
