@@ -1366,6 +1366,9 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="nfc_polling_mode_screen_locked">Screen on, locked</string>
     <string name="nfc_polling_mode_screen_unlocked">Screen on, unlocked (default)</string>     
 
+    <!-- Permissions Management -->
+    <string name="permissions_settings_title">Permissions Management</string> 
+
     <!-- Shortcut picker -->
     <string name="use_custom_app_title">Use custom application</string>
     <string name="use_custom_app_summary">Use custom application instead of the recent applications dialog</string>

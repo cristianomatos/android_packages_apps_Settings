@@ -198,6 +198,17 @@
         android:title="@string/security_settings_title"
         android:id="@+id/security_settings" />
 
+    <!-- Permissions Management -->
+    <header
+        android:id="@+id/permissions_settings"
+        android:icon="@drawable/ic_settings_permissions"
+        android:title="@string/permissions_settings_title">
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetPackage="org.cyanogenmod.permissionsmanager"
+            android:targetClass="org.cyanogenmod.permissionsmanager.activity.PermissionManagerActivity" />
+    </header> 
+
     <!-- Language -->
     <header
         android:id="@+id/language_settings"
