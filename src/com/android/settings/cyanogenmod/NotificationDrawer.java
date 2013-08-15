@@ -75,41 +75,37 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getPreferenceManager() != null) {
-            addPreferencesFromResource(R.xml.notification_drawer);
+        addPreferencesFromResource(R.xml.notification_drawer);
 
-            ContentResolver resolver = getActivity().getContentResolver();
-            PreferenceScreen prefSet = getPreferenceScreen();
+        ContentResolver resolver = getActivity().getContentResolver();
+        PreferenceScreen prefSet = getPreferenceScreen();
 
-            int collapseBehaviour = Settings.System.getInt(resolver,
-                    Settings.System.STATUS_BAR_COLLAPSE_ON_DISMISS,
-                    Settings.System.STATUS_BAR_COLLAPSE_IF_NO_CLEARABLE);
-            mCollapseOnDismiss = (ListPreference) prefSet.findPreference(UI_COLLAPSE_BEHAVIOUR);
-            mCollapseOnDismiss.setValue(String.valueOf(collapseBehaviour));
-            mCollapseOnDismiss.setOnPreferenceChangeListener(this);
-            updateCollapseBehaviourSummary(collapseBehaviour);
+        int collapseBehaviour = Settings.System.getInt(resolver,
+                Settings.System.STATUS_BAR_COLLAPSE_ON_DISMISS,
+                Settings.System.STATUS_BAR_COLLAPSE_IF_NO_CLEARABLE);
+        mCollapseOnDismiss = (ListPreference) prefSet.findPreference(UI_COLLAPSE_BEHAVIOUR);
+        mCollapseOnDismiss.setValue(String.valueOf(collapseBehaviour));
+        mCollapseOnDismiss.setOnPreferenceChangeListener(this);
+        updateCollapseBehaviourSummary(collapseBehaviour);
 
-            mPowerWidgetHapticFeedback = (ListPreference) prefSet
-                    .findPreference(UI_EXP_WIDGET_HAPTIC_FEEDBACK);
-            mPowerWidgetHapticFeedback.setOnPreferenceChangeListener(this);
-            mPowerWidgetHapticFeedback.setSummary(mPowerWidgetHapticFeedback.getEntry());
+        mPowerWidgetHapticFeedback = (ListPreference)
+                prefSet.findPreference(UI_EXP_WIDGET_HAPTIC_FEEDBACK);
+        mPowerWidgetHapticFeedback.setOnPreferenceChangeListener(this);
+        mPowerWidgetHapticFeedback.setSummary(mPowerWidgetHapticFeedback.getEntry());
+        mPowerWidgetHapticFeedback.setValue(Integer.toString(Settings.System.getInt(
+                resolver, Settings.System.EXPANDED_HAPTIC_FEEDBACK, 2))); 
 
-            mPowerWidgetHapticFeedback.setValue(Integer.toString(Settings.System.getInt(
-                    resolver, Settings.System.EXPANDED_HAPTIC_FEEDBACK, 2)));
+	int CurrentBehavior = Settings.System.getInt(getContentResolver(), Settings.System.NOTIFICATIONS_BEHAVIOUR, 0);
+        mNotificationsBehavior = (ListPreference) findPreference(UI_NOTIFICATION_BEHAVIOUR);
+        mNotificationsBehavior.setValue(String.valueOf(CurrentBehavior));
+        mNotificationsBehavior.setSummary(mNotificationsBehavior.getEntry());
+        mNotificationsBehavior.setOnPreferenceChangeListener(this); 
 
-	    int CurrentBehavior = Settings.System.getInt(getContentResolver(), Settings.System.NOTIFICATIONS_BEHAVIOUR, 0);
-            mNotificationsBehavior = (ListPreference) findPreference(UI_NOTIFICATION_BEHAVIOUR);
-            mNotificationsBehavior.setValue(String.valueOf(CurrentBehavior));
-            mNotificationsBehavior.setSummary(mNotificationsBehavior.getEntry());
-            mNotificationsBehavior.setOnPreferenceChangeListener(this); 
-
-	    mBrightnessLocation = (ListPreference) findPreference(UI_BRIGHTNESS_LOC);
-            mBrightnessLocation.setOnPreferenceChangeListener(this);
-            mBrightnessLocation.setValue(Integer.toString(Settings.System.getInt(getActivity()
-                    .getContentResolver(), Settings.System.STATUSBAR_TOGGLES_BRIGHTNESS_LOC, 3)));
-            mBrightnessLocation.setSummary(mBrightnessLocation.getEntry());
-
-        }
+	mBrightnessLocation = (ListPreference) findPreference(UI_BRIGHTNESS_LOC);
+        mBrightnessLocation.setOnPreferenceChangeListener(this);
+        mBrightnessLocation.setValue(Integer.toString(Settings.System.getInt(getActivity()
+               .getContentResolver(), Settings.System.STATUSBAR_TOGGLES_BRIGHTNESS_LOC, 3)));
+        mBrightnessLocation.setSummary(mBrightnessLocation.getEntry());
     }
 
     private void updateCollapseBehaviourSummary(int setting) {
