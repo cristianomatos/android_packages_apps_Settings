@@ -1367,7 +1367,11 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="nfc_polling_mode_screen_unlocked">Screen on, unlocked (default)</string>     
 
     <!-- Permissions Management -->
-    <string name="permissions_settings_title">Permissions Management</string> 
+    <string name="permissions_settings_title">Permissions Management</string>
+
+    <!-- Quicksettings panel floating window -->
+    <string name="title_floating_window">Floating window</string>
+    <string name="summary_floating_window">Open Quick Settings tiles in floating window</string>  
 
     <!-- Shortcut picker -->
     <string name="use_custom_app_title">Use custom application</string>
