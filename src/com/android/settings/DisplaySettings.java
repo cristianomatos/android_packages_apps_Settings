@@ -71,7 +71,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_DISPLAY_ROTATION = "display_rotation";
     private static final String KEY_LOCKSCREEN_ROTATION = "lockscreen_rotation";
     private static final String KEY_ADAPTIVE_BACKLIGHT = "adaptive_backlight"; 
-    private static final String KEY_SCREEN_OFF_ANIMATION = "screen_off_animation";
     private static final String PREF_CUSTOM_CARRIER_LABEL = "custom_carrier_label"; 
     private static final String KEY_DUAL_PANEL = "force_dualpanel";
     private static final String KEY_WAKEUP_WHEN_PLUGGED_UNPLUGGED = "wakeup_when_plugged_unplugged";
@@ -105,8 +104,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private Preference mWifiDisplayPreference;
 
     private CheckBoxPreference mAdaptiveBacklight; 
-
-    private CheckBoxPreference mScreenOffAnimation;
 
     private PreferenceScreen mNotificationPulse;
     private PreferenceScreen mBatteryPulse; 
@@ -186,13 +183,10 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             mAdaptiveBacklight = null;
         } 
 
-        mScreenOffAnimation = (CheckBoxPreference) findPreference(KEY_SCREEN_OFF_ANIMATION);
-        if (res.getBoolean(com.android.internal.R.bool.config_screenOffAnimation)) {
-            mScreenOffAnimation.setChecked(Settings.System.getInt(resolver,
-                    Settings.System.SCREEN_OFF_ANIMATION, 1) == 1);
-        } else {
-            getPreferenceScreen().removePreference(mScreenOffAnimation);
-        }
+        if (!res.getBoolean(com.android.internal.R.bool.config_screenOffAnimation)) {
+            getPreferenceScreen().removePreference(
+                    findPreference(Settings.System.SCREEN_OFF_ANIMATION)); 
+	}
 
 	mDualPanel = (CheckBoxPreference) findPreference(KEY_DUAL_PANEL);
         mDualPanel.setChecked(Settings.System.getBoolean(getContentResolver(), Settings.System.FORCE_DUAL_PANEL, false));
@@ -495,11 +489,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        if (preference == mScreenOffAnimation) { 
-            Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_OFF_ANIMATION,
-                    mScreenOffAnimation.isChecked() ? 1 : 0);
-            return true;
-	 } else if (preference == mDualPanel) {
+        if (preference == mDualPanel) {
             Settings.System.putBoolean(getContentResolver(), Settings.System.FORCE_DUAL_PANEL, ((CheckBoxPreference) preference).isChecked());
             return true;
 	} else if (preference == mWakeUpWhenPluggedOrUnplugged) {
