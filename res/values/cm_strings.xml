@@ -1242,8 +1242,11 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="screen_on_notification_led_summary">Enable Notification Light even when screen is on</string>
 
     <!-- Network speed -->
-    <string name="show_network_speed">Network speed indicator</string>
-    <string name="show_network_speed_summary">Show network speed in statusbar</string>
+    <string name="enable_network_speed">Network speed indicator</string>
+    <string name="enable_network_speed_summary">Show network speed in statusbar</string> 
+    <string name="hide_network_speed">Hide when there is no traffic</string>
+    <string name="hide_network_speed_summary">Hide network speed indicator when there is no traffic</string> 
+
 
     <!-- Network speed color style -->
     <string name="network_speed_color_title">Network speed color</string>
