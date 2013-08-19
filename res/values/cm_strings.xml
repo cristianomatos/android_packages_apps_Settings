@@ -992,7 +992,12 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="more_device_controls_title">More\u2026</string>
     <string name="more_device_settings_title">Other device options</string>
     <string name="sensors_motors_title">Sensors &amp; motors</string>
-    <string name="display_calibration_title">Display calibration</string> 
+    <string name="display_calibration_title">Display calibration</string>
+
+    <!-- Hardware tunables - Key backlight -->
+    <string name="key_backlight_title">Backlight</string>
+    <string name="button_backlight_title">Button backlight brightness</string>
+    <string name="keyboard_backlight_title">Keyboard backlight brightness</string>  
 
     <!--++++++++++++++++++++++++++++++++++++-->
     <!--+ Start of crDroid Custom Features +-->
