@@ -22,29 +22,39 @@
         android:key="pref_general_settings"
         android:title="@string/title_general" >
 
+	<CheckBoxPreference
+            android:key="disable_quick_settings"
+            android:title="@string/disable_quick_settings_panel"
+            android:defaultValue="false"
+            android:summary="@string/disable_quick_settings_panel_summary" /> 
+
 	<ListPreference
             android:key="quick_pulldown"
             android:title="@string/title_quick_pulldown"
             android:entries="@array/quick_pulldown_entries"
             android:entryValues="@array/quick_pulldown_values"
-            android:persistent="false" />
+            android:persistent="false" 
+	    android:dependency="disable_quick_settings" />
 
         <ListPreference 
             android:key="no_notifications_pulldown"
             android:title="@string/title_no_notifications_pulldown"
             android:entries="@array/no_notifications_pulldown_entries"
             android:entryValues="@array/no_notifications_pulldown_values"
-            android:persistent="false" />  
+            android:persistent="false" 
+	    android:dependency="disable_quick_settings" />  
 
         <CheckBoxPreference
             android:key="collapse_panel"
             android:title="@string/title_collapse_panel"
-            android:summary="@string/summary_collapse_panel" />
+            android:summary="@string/summary_collapse_panel" 
+	    android:dependency="disable_quick_settings" />
         
         <CheckBoxPreference
             android:key="floating_window"
             android:title="@string/title_floating_window"
-            android:summary="@string/summary_floating_window" />
+            android:summary="@string/summary_floating_window" 
+	    android:dependency="disable_quick_settings" />
 
     </PreferenceCategory>
 
@@ -56,7 +66,8 @@
             android:key="tile_picker"
             android:title="@string/tile_picker_title"
             android:summary="@string/tile_picker_summary"
-            android:fragment="com.android.settings.cyanogenmod.QuickSettingsTiles" />
+            android:fragment="com.android.settings.cyanogenmod.QuickSettingsTiles" 
+	    android:dependency="disable_quick_settings" />
 
         <MultiSelectListPreference
             android:key="pref_ring_mode"
@@ -64,21 +75,24 @@
             android:title="@string/pref_ring_mode_title"
             android:summary="@string/pref_ring_mode_summary"
             android:entries="@array/entries_ring_widget"
-            android:entryValues="@array/values_ring_widget" />
+            android:entryValues="@array/values_ring_widget" 
+	    android:dependency="disable_quick_settings" />
 
         <ListPreference
             android:key="pref_network_mode"
             android:dialogTitle="@string/pref_network_mode_title"
             android:title="@string/pref_network_mode_title"
             android:entries="@array/entries_network_widget"
-            android:entryValues="@array/values_network_widget" />
+            android:entryValues="@array/values_network_widget" 
+	    android:dependency="disable_quick_settings" />
 
         <ListPreference
             android:key="pref_screentimeout_mode"
             android:dialogTitle="@string/pref_screentimeout_mode_title"
             android:title="@string/pref_screentimeout_mode_title"
             android:entries="@array/entries_screentimeout_widget"
-            android:entryValues="@array/values_screentimeout_widget" />
+            android:entryValues="@array/values_screentimeout_widget" 
+	    android:dependency="disable_quick_settings" />
 
         </PreferenceCategory>
 
@@ -94,27 +108,33 @@
 
         <CheckBoxPreference
             android:key="dynamic_alarm"
-            android:title="@string/title_dynamic_alarm" />
+            android:title="@string/title_dynamic_alarm" 
+	    android:dependency="disable_quick_settings" />
 
         <CheckBoxPreference
             android:key="dynamic_bugreport"
-            android:title="@string/title_dynamic_bugreport" />
+            android:title="@string/title_dynamic_bugreport" 
+	    android:dependency="disable_quick_settings" />
 
         <CheckBoxPreference
             android:key="dynamic_dock_battery"
-            android:title="@string/title_dynamic_dock_battery" />
+            android:title="@string/title_dynamic_dock_battery" 
+	    android:dependency="disable_quick_settings" />
 
         <CheckBoxPreference
             android:key="dynamic_ime"
-            android:title="@string/title_dynamic_ime" />
+            android:title="@string/title_dynamic_ime" 
+	    android:dependency="disable_quick_settings" />
 
         <CheckBoxPreference
             android:key="dynamic_usbtether"
-            android:title="@string/title_dynamic_usbtether" />
+            android:title="@string/title_dynamic_usbtether" 
+	    android:dependency="disable_quick_settings" />
 
         <CheckBoxPreference
             android:key="dynamic_wifi"
-            android:title="@string/title_dynamic_wifi" />
+            android:title="@string/title_dynamic_wifi" 
+	    android:dependency="disable_quick_settings" />
 
     </PreferenceCategory>
 

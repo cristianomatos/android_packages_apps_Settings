@@ -61,7 +61,8 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
     private static final String GENERAL_SETTINGS = "pref_general_settings";
     private static final String STATIC_TILES = "static_tiles";
     private static final String DYNAMIC_TILES = "pref_dynamic_tiles";
-    private static final String FLOATING_WINDOW ="floating_window"; 
+    private static final String FLOATING_WINDOW ="floating_window";
+    private static final String DISABLE_PANEL = "disable_quick_settings";   
 
     MultiSelectListPreference mRingMode;
     ListPreference mNetworkMode;
@@ -79,6 +80,7 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
     PreferenceCategory mGeneralSettings;
     PreferenceCategory mStaticTiles;
     PreferenceCategory mDynamicTiles;
+    CheckBoxPreference mDisablePanel; 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -96,11 +98,14 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
         mStaticTiles = (PreferenceCategory) prefSet.findPreference(STATIC_TILES);
         mDynamicTiles = (PreferenceCategory) prefSet.findPreference(DYNAMIC_TILES);
         mQuickPulldown = (ListPreference) prefSet.findPreference(QUICK_PULLDOWN);
-	mNoNotificationsPulldown = (ListPreference) prefSet.findPreference(NO_NOTIFICATIONS_PULLDOWN); 
+	mNoNotificationsPulldown = (ListPreference) prefSet.findPreference(NO_NOTIFICATIONS_PULLDOWN);
+	mDisablePanel = (CheckBoxPreference) prefSet.findPreference(DISABLE_PANEL);    
         
   	if (!Utils.isPhone(getActivity())) { 
             if(mQuickPulldown != null)
                 mGeneralSettings.removePreference(mQuickPulldown);
+	    if(mDisablePanel != null)
+                mGeneralSettings.removePreference(mDisablePanel);  
 	if(mNoNotificationsPulldown != null)
                 mGeneralSettings.removePreference(mNoNotificationsPulldown);  
         } else {
@@ -109,10 +114,16 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
             mQuickPulldown.setValue(String.valueOf(quickPulldownValue));
             updatePulldownSummary(quickPulldownValue);
 
+	    boolean disablePanel = Settings.System.getInt(resolver,
+                Settings.System.QS_DISABLE_PANEL, 0) == 0;
+            mDisablePanel.setChecked(disablePanel);
+
 	    mNoNotificationsPulldown.setOnPreferenceChangeListener(this);
             int noNotificationsPulldownValue = Settings.System.getInt(resolver, Settings.System.QS_NO_NOTIFICATION_PULLDOWN, 0);
             mNoNotificationsPulldown.setValue(String.valueOf(noNotificationsPulldownValue));
-            updateNoNotificationsPulldownSummary(noNotificationsPulldownValue); 
+            updateNoNotificationsPulldownSummary(noNotificationsPulldownValue);
+
+	    setEnablePreferences(disablePanel);   
         }
 
         mCollapsePanel = (CheckBoxPreference) prefSet.findPreference(COLLAPSE_PANEL);
@@ -234,7 +245,11 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
 	} else if (preference == mFloatingWindow) {
             Settings.System.putInt(resolver, Settings.System.QS_FLOATING_WINDOW,
                     mFloatingWindow.isChecked() ? 1 : 0);
-            return true;   
+            return true;
+	} else if (preference == mDisablePanel) {
+            Settings.System.putInt(resolver, Settings.System.QS_DISABLE_PANEL,
+                    mDisablePanel.isChecked() ? 0 : 1);
+            setEnablePreferences(mDisablePanel.isChecked());      
 	}
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
@@ -345,4 +360,6 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
             return val.toString().split(SEPARATOR);
         }
     }
+
+    private void setEnablePreferences(boolean status) {}
 }
