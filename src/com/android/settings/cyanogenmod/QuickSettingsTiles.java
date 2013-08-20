@@ -19,6 +19,7 @@ package com.android.settings.cyanogenmod;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -44,6 +45,7 @@ import com.android.settings.R;
 import com.android.settings.Utils;
 import com.android.settings.cyanogenmod.QuickSettingsUtil.TileInfo;
 
+import java.io.File;
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,7 +60,7 @@ public class QuickSettingsTiles extends Fragment {
     LayoutInflater mInflater;
     Resources mSystemUiResources;
     TileAdapter mTileAdapter;
-
+    
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mDragView = new DraggableGridView(getActivity());

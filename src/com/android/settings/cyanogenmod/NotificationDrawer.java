@@ -69,9 +69,6 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
     private static final String UI_EXP_WIDGET_HIDE_SCROLLBAR = "expanded_hide_scrollbar";
     private static final String UI_EXP_WIDGET_HAPTIC_FEEDBACK = "expanded_haptic_feedback";
 
-    public static final String FAST_CHARGE_DIR = "/sys/kernel/fast_charge";
-    public static final String FAST_CHARGE_FILE = "force_fast_charge"; 
-    
     private ListPreference mCollapseOnDismiss;
     private CheckBoxPreference mPowerWidget;
     private CheckBoxPreference mPowerWidgetHideOnChange;
@@ -305,8 +302,16 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
             }
 
 	    // Dont show fast charge option if not supported
-            File fastcharge = new File(FAST_CHARGE_DIR, FAST_CHARGE_FILE);
-            if (!fastcharge.exists()) {
+            boolean fchargeIsPossible = false;
+            String fchargePath = getActivity().getApplicationContext().getResources()
+                    .getString(com.android.internal.R.string.config_fastChargePath);
+            if (!fchargePath.isEmpty()) {
+                File fastcharge = new File(fchargePath);
+                if (fastcharge.exists()) {
+                    fchargeIsPossible = true;
+                }
+            }
+            if (!fchargeIsPossible) { 
                 PowerWidgetUtil.BUTTONS.remove(PowerWidgetUtil.BUTTON_FCHARGE);
             } 
 

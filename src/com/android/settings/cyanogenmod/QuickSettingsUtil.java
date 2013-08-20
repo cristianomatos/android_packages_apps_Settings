@@ -211,7 +211,7 @@ public class QuickSettingsUtil {
             removeTile(TILE_TORCH);
         }
 
-        sUnsupportedRemoved = true;
+	sUnsupportedRemoved = true;
     }
 
     private static synchronized void refreshAvailableTiles(Context context) {

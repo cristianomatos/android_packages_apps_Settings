@@ -65,9 +65,6 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
     private static final String FLOATING_WINDOW ="floating_window";
     private static final String DISABLE_PANEL = "disable_quick_settings";   
 
-    public static final String FAST_CHARGE_DIR = "/sys/kernel/fast_charge";
-    public static final String FAST_CHARGE_FILE = "force_fast_charge"; 
-
     MultiSelectListPreference mRingMode;
     ListPreference mNetworkMode;
     ListPreference mScreenTimeoutMode;
@@ -199,12 +196,7 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
                 mDynamicTiles.removePreference(mDynamicWifi);
                 mDynamicWifi = null;
             }
-        }
-	// Dont show fast charge tile if not supported
-        //File fastcharge = new File(FAST_CHARGE_DIR, FAST_CHARGE_FILE);
-        //if (!fastcharge.exists()) {
-        //    QuickSettingsUtil.TILES.remove(QuickSettingsUtil.TILE_FCHARGE);
-        //} 
+        }  
     }
 
     @Override
