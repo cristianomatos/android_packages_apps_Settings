@@ -16,7 +16,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Activity label of BluetoothMasPermissionActivity, also used as Strings in the permission dialog [CHAR LIMIT=none] -->
     <string name="bluetooth_mas_request">"Message Access request"</string>
-    <!-- Bluetooth MAS permission Alert Activity text [CHAR LIMIT=none] -->
+    <!-- Bluetooth MAS permission Alert Arctivity text [CHAR LIMIT=none] -->
     <string name="bluetooth_mas_acceptance_dialog_text">%1$s would like to access your messages. Give access to %2$s?</string>
     <!-- Bluetooth MAS permission Alert Activity checkbox text [CHAR LIMIT=none] -->
     <string name="bluetooth_mas_remember_choice">Don\'t ask again</string>
@@ -103,7 +103,7 @@
 
     <!-- crDroid Version -->	
     <string name="crDroid_version">crDroid AOSP version</string>
-    <string name="crDroid_version_default">Build ????</string>
+    <string name="crDroid_version_default">Build 7</string>
 
     <!-- About phone screen, build date of ROM -->
     <string name="build_date">Build date</string>
@@ -1066,6 +1066,7 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="status_bar_clock_style_reset">Reset color</string> 
     <string name="status_bar_show_clock_title">Show clock</string>
     <string name="status_bar_am_pm_title">AM/PM style</string>
+    <string name="status_bar_am_pm_info">24-hour clock is enabled</string>
     <string name="enable_clock_weekday">Day of the week</string>
     <string name="enable_clock_weekday_summary">Abbreviated day of the week before the time</string>
     <string name="right_clock">Right clock</string>
@@ -1076,7 +1077,7 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="clock_date_style">Date style</string>
     <string name="clock_date_format">Date format</string>
     <string name="clock_date_string_edittext_title">Must be in DateFormat eg. MM/dd/yy</string>
-    <string name="clock_date_string_edittext_summary">Enter string</string>
+    <string name="clock_date_string_edittext_summary">Enter string</string> 
 
     <!-- Circle battery custom osptions -->
     <string name="circle_mod_cat">Circle battery options</string>
