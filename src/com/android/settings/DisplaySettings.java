@@ -51,7 +51,6 @@ import android.util.Log;
 import android.widget.EditText; 
 
 import com.android.internal.view.RotationPolicy;
-import com.android.settings.cyanogenmod.DisplayColor; 
 import com.android.settings.cyanogenmod.DisplayRotation;
 
 public class DisplaySettings extends SettingsPreferenceFragment implements
