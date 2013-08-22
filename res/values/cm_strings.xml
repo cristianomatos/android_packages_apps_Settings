@@ -1404,7 +1404,19 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="display_short">Display</string>
     <string name="misc_short">Misc</string>
     <string name="alt_resolver">Use Alt Default App Grid</string>
-    <string name="alt_resolver_summary">Use Alternate Default App Picker</string>   
+    <string name="alt_resolver_summary">Use Alternate Default App Picker</string>  
+
+    <!-- Lock screen background -->
+    <string name="lockscreen_style_options_title">Lock screen style</string>
+    <string name="lockscreen_custom_background_title">Lockscreen background</string>
+    <string name="lockscreen_custom_background_dialog_title">Choose color</string>
+    <string name="lockscreen_background_result_successful">Background changed</string>
+    <string name="lockscreen_background_result_not_successful">Background not changed</string>
+    <string name="lockscreen_background_color_fill">Color fill</string>
+    <string name="lockscreen_background_custom_image">Custom image</string>
+    <string name="lockscreen_background_full_transparent">Full transparent</string>
+    <string name="lockscreen_background_default_wallpaper">Default wallpaper</string>
+    <string name="lockscreen_alpha_title">Lockscreen background transparency</string>  
 
     <!-- Shortcut picker -->
     <string name="use_custom_app_title">Use custom application</string>
