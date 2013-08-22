@@ -52,6 +52,12 @@ limitations under the License.
         android:title="@string/app_sidebar_title"    
   	android:summary="@string/app_sidebar_summary" /> 
 
+    <CheckBoxPreference
+        android:key="use_alt_resolver"
+        android:title="@string/alt_resolver"
+        android:summary="@string/alt_resolver_summary"
+        android:defaultValue="false" />
+
     <PreferenceScreen
         android:key="general_ui_settings"
         android:fragment="com.android.settings.cyanogenmod.UserInterface"

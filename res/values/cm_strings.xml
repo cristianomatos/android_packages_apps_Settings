@@ -1398,7 +1398,13 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="disable_quick_settings_panel">Quick Settings</string>
     <string name="disable_quick_settings_panel_summary">Enable or disable Quick Settings</string>
     <string name="quick_settings_enabled">Enabled</string>
-    <string name="quick_settings_disabled">Disabled</string>  
+    <string name="quick_settings_disabled">Disabled</string>
+
+    <!-- Alternate default app picker -->
+    <string name="display_short">Display</string>
+    <string name="misc_short">Misc</string>
+    <string name="alt_resolver">Use Alt Default App Grid</string>
+    <string name="alt_resolver_summary">Use Alternate Default App Picker</string>   
 
     <!-- Shortcut picker -->
     <string name="use_custom_app_title">Use custom application</string>

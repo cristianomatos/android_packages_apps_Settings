@@ -57,13 +57,15 @@ public class SystemUiSettings extends SettingsPreferenceFragment implements Pref
     private static final String KEY_LOW_BATTERY_WARNING_POLICY = "pref_low_battery_warning_policy";
     private static final String KEY_SCREEN_ON_NOTIFICATION_LED = "screen_on_notification_led";
     private static final String KEY_RECENTS_RAM_BAR = "recents_ram_bar";  
+    private static final String PREF_USE_ALT_RESOLVER = "use_alt_resolver"; 
 
     private PreferenceScreen mPieControl;
     private ListPreference mExpandedDesktopPref;
     private CheckBoxPreference mExpandedDesktopNoNavbarPref;
     private ListPreference mLowBatteryWarning;
     private CheckBoxPreference mScreenOnNotificationLed;
-    private Preference mRamBar;  
+    private Preference mRamBar;
+    private CheckBoxPreference mUseAltResolver;   
     
     private boolean mIsPrimary;
 
@@ -107,7 +109,12 @@ public class SystemUiSettings extends SettingsPreferenceFragment implements Pref
         mLowBatteryWarning.setOnPreferenceChangeListener(this);
 
 	mRamBar = findPreference(KEY_RECENTS_RAM_BAR);
-        updateRamBar();  
+        updateRamBar();
+
+	mUseAltResolver = (CheckBoxPreference) findPreference(PREF_USE_ALT_RESOLVER);
+        mUseAltResolver.setChecked(Settings.System.getInt(
+                getActivity().getContentResolver(),
+                Settings.System.ACTIVITY_RESOLVER_USE_ALT, 0) == 1);   
 
 	int statusScreenOnNotificationLed = Settings.System.getInt(getContentResolver(),
                 Settings.System.SCREEN_ON_NOTIFICATION_LED, 1);
@@ -208,6 +215,11 @@ public class SystemUiSettings extends SettingsPreferenceFragment implements Pref
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.SCREEN_ON_NOTIFICATION_LED,
                     mScreenOnNotificationLed.isChecked() ? 1 : 0);
+	} else if (preference == mUseAltResolver) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.ACTIVITY_RESOLVER_USE_ALT,
+                    ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
+            return true; 
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     } 
