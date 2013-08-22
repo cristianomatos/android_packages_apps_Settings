@@ -1706,6 +1706,8 @@
 
         <activity android:name=".cyanogenmod.QuickSettings" />
 
+	<activity android:name=".cyanogenmod.NotificationDrawer" /> 
+
 	<activity android:name=".cyanogenmod.MoreDeviceSettings" /> 
 
 	<activity android:name=".cyanogenmod.StatusBar" />
