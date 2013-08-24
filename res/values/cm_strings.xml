@@ -1416,7 +1416,12 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="lockscreen_background_custom_image">Custom image</string>
     <string name="lockscreen_background_full_transparent">Full transparent</string>
     <string name="lockscreen_background_default_wallpaper">Default wallpaper</string>
-    <string name="lockscreen_alpha_title">Lockscreen background transparency</string>  
+    <string name="lockscreen_alpha_title">Lockscreen background transparency</string>
+
+    <!-- Wifi name in notifiation drawer -->
+    <string name="display_misc_title">Misc</string>
+    <string name="notification_show_wifi_ssid_title">Show Wifi network name</string>
+    <string name="notification_show_wifi_ssid_summary">Display the name of the currently connected Wifi network</string>   
 
     <!-- Shortcut picker -->
     <string name="use_custom_app_title">Use custom application</string>

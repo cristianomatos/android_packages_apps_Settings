@@ -86,20 +86,31 @@
 
         </PreferenceCategory>
 
-	<PreferenceScreen
-            android:key="custom_carrier_label"
-            android:title="@string/custom_carrier_label_title" /> 
+	<PreferenceCategory
+            android:title="@string/display_misc_title">
 
-	<CheckBoxPreference
-            android:key="force_dualpanel"
-            android:title="@string/force_dualpanel_title"
-            android:summary="@string/force_dualpanel_summary"
-            android:defaultValue="false" />
+	    <PreferenceScreen
+                android:key="custom_carrier_label"
+                android:title="@string/custom_carrier_label_title" /> 
 
-	<CheckBoxPreference
-            android:key="wakeup_when_plugged_unplugged"
-            android:title="@string/wakeup_when_plugged_unplugged_title"
-            android:summary="@string/wakeup_when_plugged_unplugged_summary"
-            android:defaultValue="true" />  
+	    <CheckBoxPreference
+                android:key="notification_show_wifi_ssid"
+                android:title="@string/notification_show_wifi_ssid_title"
+                android:summary="@string/notification_show_wifi_ssid_summary"
+                android:defaultValue="false" /> 
+
+	    <CheckBoxPreference
+                android:key="force_dualpanel"
+                android:title="@string/force_dualpanel_title"
+                android:summary="@string/force_dualpanel_summary"
+                android:defaultValue="false" />
+
+	    <CheckBoxPreference
+                android:key="wakeup_when_plugged_unplugged"
+                android:title="@string/wakeup_when_plugged_unplugged_title"
+                android:summary="@string/wakeup_when_plugged_unplugged_summary"
+                android:defaultValue="true" />  
+
+	</PreferenceCategory>
 
 </PreferenceScreen>

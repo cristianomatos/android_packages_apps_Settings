@@ -74,6 +74,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String PREF_CUSTOM_CARRIER_LABEL = "custom_carrier_label"; 
     private static final String KEY_DUAL_PANEL = "force_dualpanel";
     private static final String KEY_WAKEUP_WHEN_PLUGGED_UNPLUGGED = "wakeup_when_plugged_unplugged";
+    private static final String PREF_NOTIFICATION_SHOW_WIFI_SSID = "notification_show_wifi_ssid"; 
 
     private static final String CATEGORY_LIGHTS = "lights_prefs";
     private static final String KEY_NOTIFICATION_PULSE = "notification_pulse";
@@ -89,7 +90,8 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
     private DisplayManager mDisplayManager;
 
-    private Preference mCustomLabel; 
+    private Preference mCustomLabel;
+    private CheckBoxPreference mShowWifiName;  
     private CheckBoxPreference mDualPanel;
     private CheckBoxPreference mWakeUpWhenPluggedOrUnplugged;  
     private PreferenceScreen mDisplayRotationPreference;
@@ -176,6 +178,10 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
 	mCustomLabel = findPreference(PREF_CUSTOM_CARRIER_LABEL);
         updateCustomLabelTextSummary();
+
+	mShowWifiName = (CheckBoxPreference) findPreference(PREF_NOTIFICATION_SHOW_WIFI_SSID);
+        mShowWifiName.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.NOTIFICATION_SHOW_WIFI_SSID, 0) == 1); 
 
 	mAdaptiveBacklight = (CheckBoxPreference) findPreference(KEY_ADAPTIVE_BACKLIGHT);
         if (!AdaptiveBacklight.isSupported()) {
@@ -497,6 +503,11 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                     Settings.System.WAKEUP_WHEN_PLUGGED_UNPLUGGED,
                     mWakeUpWhenPluggedOrUnplugged.isChecked() ? 1 : 0);
             return true;
+	} else if (preference == mShowWifiName) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.NOTIFICATION_SHOW_WIFI_SSID,
+                    mShowWifiName.isChecked() ? 1 : 0);
+            return true; 
 	} else if (preference == mAdaptiveBacklight) {
             return AdaptiveBacklight.setEnabled(mAdaptiveBacklight.isChecked());    
 	} else if (preference == mCustomLabel) {
