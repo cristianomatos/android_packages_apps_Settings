@@ -56,6 +56,11 @@
             android:summary="@string/summary_floating_window" 
 	    android:dependency="disable_quick_settings" />
 
+	<com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
+            android:key="flip_qs_tiles"
+            android:title="@string/flip_qs_tiles_title"
+            android:summary="@string/flip_qs_tiles_summary" /> 
+
     </PreferenceCategory>
 
     <PreferenceCategory
