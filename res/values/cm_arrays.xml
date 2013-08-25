@@ -878,19 +878,6 @@
         <item>2</item>
     </string-array>
 
-    <!-- Brightness slider -->
-    <string-array name="brightness_location_entries">
-        <item>@string/brightness_slider_top</item>
-        <item>@string/brightness_slider_bottom</item>
-        <item>@string/brightness_slider_none</item>
-    </string-array>
-
-    <string-array name="brightness_location_values" translatable="false">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-    </string-array> 
-
     <!-- HALO -->
     <string-array name="entries_halo_state">
         <item>@string/halo_state_black</item>

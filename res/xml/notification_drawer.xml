@@ -41,14 +41,6 @@
         android:title="@string/notification_style_title"
         android:summary="@string/notification_style_summary" />
 
-    <!-- Notification drawer brightness slider -->
-    <ListPreference
-        android:key="brightness_location"
-        android:entries="@array/brightness_location_entries"
-        android:entryValues="@array/brightness_location_values"
-        android:title="@string/brightness_location_title"
-        android:dependency="qs_quick_access" />        
-
     <PreferenceCategory
        android:title="@string/category_quick_access" > 
 

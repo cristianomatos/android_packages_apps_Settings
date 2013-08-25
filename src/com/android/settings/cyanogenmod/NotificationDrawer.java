@@ -40,11 +40,9 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
     private static final String TAG = "NotificationDrawer"; 
     private static final String UI_COLLAPSE_BEHAVIOUR = "notification_drawer_collapse_on_dismiss";
     private static final String UI_NOTIFICATION_BEHAVIOUR = "notifications_behaviour";
-    private static final String UI_BRIGHTNESS_LOC = "brightness_location"; 
     
     private ListPreference mCollapseOnDismiss;
     private ListPreference mNotificationsBehavior;
-    private ListPreference mBrightnessLocation;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,12 +65,6 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
         mNotificationsBehavior.setValue(String.valueOf(CurrentBehavior));
         mNotificationsBehavior.setSummary(mNotificationsBehavior.getEntry());
         mNotificationsBehavior.setOnPreferenceChangeListener(this); 
-
-	mBrightnessLocation = (ListPreference) findPreference(UI_BRIGHTNESS_LOC);
-        mBrightnessLocation.setOnPreferenceChangeListener(this);
-        mBrightnessLocation.setValue(Integer.toString(Settings.System.getInt(getActivity()
-               .getContentResolver(), Settings.System.STATUSBAR_TOGGLES_BRIGHTNESS_LOC, 3)));
-        mBrightnessLocation.setSummary(mBrightnessLocation.getEntry());
     }
 
     @Override
@@ -90,14 +82,7 @@ public class NotificationDrawer extends SettingsPreferenceFragment implements
             int index = mNotificationsBehavior.findIndexOfValue(val);
             mNotificationsBehavior.setSummary(mNotificationsBehavior.getEntries()[index]);
             return true; 
-	} else if (preference == mBrightnessLocation) {
-            int val = Integer.parseInt((String) objValue);
-            int index = mBrightnessLocation.findIndexOfValue((String) objValue);
-            Settings.System.putInt(getActivity().getContentResolver(),
-            Settings.System.STATUSBAR_TOGGLES_BRIGHTNESS_LOC, val);
-            mBrightnessLocation.setSummary(mBrightnessLocation.getEntries()[index]);
-            return true; 
-        }
+	}
 
         return false;
     }
