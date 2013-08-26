@@ -57,7 +57,9 @@ public class SystemUiSettings extends SettingsPreferenceFragment implements Pref
     private static final String KEY_LOW_BATTERY_WARNING_POLICY = "pref_low_battery_warning_policy";
     private static final String KEY_SCREEN_ON_NOTIFICATION_LED = "screen_on_notification_led";
     private static final String KEY_RECENTS_RAM_BAR = "recents_ram_bar";  
-    private static final String PREF_USE_ALT_RESOLVER = "use_alt_resolver"; 
+    private static final String PREF_USE_ALT_RESOLVER = "use_alt_resolver";
+    private static final String KEY_LISTVIEW_ANIMATION = "listview_animation";
+    private static final String KEY_LISTVIEW_INTERPOLATOR = "listview_interpolator";  
 
     private PreferenceScreen mPieControl;
     private ListPreference mExpandedDesktopPref;
@@ -65,7 +67,9 @@ public class SystemUiSettings extends SettingsPreferenceFragment implements Pref
     private ListPreference mLowBatteryWarning;
     private CheckBoxPreference mScreenOnNotificationLed;
     private Preference mRamBar;
-    private CheckBoxPreference mUseAltResolver;   
+    private CheckBoxPreference mUseAltResolver;
+    private ListPreference mListViewAnimation;
+    private ListPreference mListViewInterpolator;   
     
     private boolean mIsPrimary;
 
@@ -99,6 +103,21 @@ public class SystemUiSettings extends SettingsPreferenceFragment implements Pref
         //if (removeNavbar) {
         //    prefScreen.removePreference(navbarCategory);
         //}
+
+	//ListView Animations
+        mListViewAnimation = (ListPreference) findPreference(KEY_LISTVIEW_ANIMATION);
+        int listviewanimation = Settings.System.getInt(getActivity().getContentResolver(),
+            Settings.System.LISTVIEW_ANIMATION, 1);
+        mListViewAnimation.setValue(String.valueOf(listviewanimation));
+        mListViewAnimation.setSummary(mListViewAnimation.getEntry());
+        mListViewAnimation.setOnPreferenceChangeListener(this);
+
+        mListViewInterpolator = (ListPreference) findPreference(KEY_LISTVIEW_INTERPOLATOR);
+        int listviewinterpolator = Settings.System.getInt(getActivity().getContentResolver(),
+            Settings.System.LISTVIEW_INTERPOLATOR, 0);
+        mListViewInterpolator.setValue(String.valueOf(listviewinterpolator));
+        mListViewInterpolator.setSummary(mListViewInterpolator.getEntry());
+        mListViewInterpolator.setOnPreferenceChangeListener(this);
 
         // Low battery warning
 	mLowBatteryWarning = (ListPreference) findPreference(KEY_LOW_BATTERY_WARNING_POLICY);
@@ -189,6 +208,22 @@ public class SystemUiSettings extends SettingsPreferenceFragment implements Pref
         if (preference == mExpandedDesktopPref) {
             int expandedDesktopValue = Integer.valueOf((String) objValue);
             updateExpandedDesktop(expandedDesktopValue);
+            return true;
+	} else if (preference == mListViewAnimation) {
+            int listviewanimation = Integer.valueOf((String) objValue);
+            int index = mListViewAnimation.findIndexOfValue((String) objValue);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.LISTVIEW_ANIMATION,
+                    listviewanimation);
+            mListViewAnimation.setSummary(mListViewAnimation.getEntries()[index]);
+            return true;
+        } else if (preference == mListViewInterpolator) {
+            int listviewinterpolator = Integer.valueOf((String) objValue);
+            int index = mListViewInterpolator.findIndexOfValue((String) objValue);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.LISTVIEW_INTERPOLATOR,
+                    listviewinterpolator);
+            mListViewInterpolator.setSummary(mListViewInterpolator.getEntries()[index]);
             return true;
 	} else if (preference == mLowBatteryWarning) {
             int lowBatteryWarning = Integer.valueOf((String) objValue);
