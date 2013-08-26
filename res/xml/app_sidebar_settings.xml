@@ -53,7 +53,7 @@
         android:title="@string/app_sidebar_transparency_title"
         android:summary="@string/app_sidebar_transparency_summary"
         android:max="50"
-        settings:min="0"
+        settings:minappbar="0"
         settings:unitsLeft=""
         settings:unitsRight="%"
         android:defaultValue="0"
@@ -68,7 +68,7 @@
         android:summary="@string/trigger_width_summary"
         android:defaultValue="4"
         android:max="64"
-        settings:min="4"
+        settings:minappbar="4"
         settings:unitsLeft=""
         settings:unitsRight="px"
         android:dependency="sidebar_enable" />
@@ -79,7 +79,7 @@
         android:summary="@string/trigger_top_summary"
         android:defaultValue="0"
         android:max="99"
-        settings:min="0"
+        settings:minappbar="0"
         settings:unitsLeft=""
         settings:unitsRight="%"
         android:dependency="sidebar_enable" />
@@ -90,7 +90,7 @@
         android:summary="@string/trigger_bottom_summary"
         android:defaultValue="100"
         android:max="100"
-        settings:min="1"
+        settings:minappbar="1"
         settings:unitsLeft=""
         settings:unitsRight="%"
         android:dependency="sidebar_enable" />
