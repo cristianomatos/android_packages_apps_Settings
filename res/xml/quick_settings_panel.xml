@@ -21,39 +21,29 @@
         android:key="pref_general_settings"
         android:title="@string/title_general" >
 
-	<com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
-            android:key="disable_quick_settings"
-            android:title="@string/disable_quick_settings_panel"
-            android:defaultValue="false"
-            android:summary="@string/disable_quick_settings_panel_summary" /> 
-
 	<ListPreference
             android:key="quick_pulldown"
             android:title="@string/title_quick_pulldown"
             android:entries="@array/quick_pulldown_entries"
             android:entryValues="@array/quick_pulldown_values"
-            android:persistent="false" 
-	    android:dependency="disable_quick_settings" />
+            android:persistent="false" />
 
         <ListPreference 
             android:key="no_notifications_pulldown"
             android:title="@string/title_no_notifications_pulldown"
             android:entries="@array/no_notifications_pulldown_entries"
             android:entryValues="@array/no_notifications_pulldown_values"
-            android:persistent="false" 
-	    android:dependency="disable_quick_settings" />  
+            android:persistent="false" />  
 
         <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
             android:key="qs_collapse_panel" 
             android:title="@string/title_collapse_panel"
-            android:summary="@string/summary_collapse_panel" 
-	    android:dependency="disable_quick_settings" />
+            android:summary="@string/summary_collapse_panel" />
         
         <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
             android:key="floating_window"
             android:title="@string/title_floating_window"
-            android:summary="@string/summary_floating_window" 
-	    android:dependency="disable_quick_settings" />
+            android:summary="@string/summary_floating_window" />
 
 	<com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
             android:key="flip_qs_tiles"
@@ -70,8 +60,7 @@
             android:key="tile_picker"
             android:title="@string/tile_picker_title"
             android:summary="@string/tile_picker_summary"
-            android:fragment="com.android.settings.cyanogenmod.QuickSettingsTiles" 
-	    android:dependency="disable_quick_settings" />
+            android:fragment="com.android.settings.cyanogenmod.QuickSettingsTiles" />
 
         <MultiSelectListPreference
             android:key="pref_ring_mode"
@@ -79,24 +68,21 @@
             android:title="@string/pref_ring_mode_title"
             android:summary="@string/pref_ring_mode_summary"
             android:entries="@array/entries_ring_widget"
-            android:entryValues="@array/values_ring_widget" 
-	    android:dependency="disable_quick_settings" />
+            android:entryValues="@array/values_ring_widget" />
 
         <ListPreference
             android:key="pref_network_mode"
             android:dialogTitle="@string/pref_network_mode_title"
             android:title="@string/pref_network_mode_title"
             android:entries="@array/entries_network_widget"
-            android:entryValues="@array/values_network_widget" 
-	    android:dependency="disable_quick_settings" />
+            android:entryValues="@array/values_network_widget" />
 
         <ListPreference
             android:key="pref_screentimeout_mode"
             android:dialogTitle="@string/pref_screentimeout_mode_title"
             android:title="@string/pref_screentimeout_mode_title"
             android:entries="@array/entries_screentimeout_widget"
-            android:entryValues="@array/values_screentimeout_widget" 
-	    android:dependency="disable_quick_settings" />
+            android:entryValues="@array/values_screentimeout_widget" />
 
         </PreferenceCategory>
 

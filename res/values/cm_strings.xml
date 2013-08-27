@@ -1357,12 +1357,6 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="title_floating_window">Floating window</string>
     <string name="summary_floating_window">Open Quick Settings tiles in floating window</string>  
 
-    <!-- Hide quicksettings panel -->
-    <string name="disable_quick_settings_panel">Quick Settings</string>
-    <string name="disable_quick_settings_panel_summary">Enable or disable Quick Settings</string>
-    <string name="quick_settings_enabled">Enabled</string>
-    <string name="quick_settings_disabled">Disabled</string>
-
     <!-- Alternate default app picker -->
     <string name="display_short">Display</string>
     <string name="misc_short">Misc</string>
