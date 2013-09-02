@@ -73,7 +73,11 @@ public class NavBarStyle extends SettingsPreferenceFragment implements
         mNavBarColor = (ColorPickerPreference) findPreference(PREF_NAV_BAR_COLOR);
         mNavBarColor.setOnPreferenceChangeListener(this);
         int intColor = Settings.System.getInt(getActivity().getContentResolver(),
-                    Settings.System.NAVIGATION_BAR_COLOR, 0xff000000);
+                    Settings.System.NAVIGATION_BAR_TINT, -2);
+        if (intColor == -2) {
+            intColor = getResources().getColor(
+                    com.android.internal.R.color.black);
+        } 
         mNavBarColor.setNewPreviewColor(intColor);
 
         float statBarTransparency = 0.0f;
@@ -113,10 +117,9 @@ public class NavBarStyle extends SettingsPreferenceFragment implements
                 Settings.System.putInt(getActivity().getContentResolver(),
                         Settings.System.NAV_BAR_ALPHA_MODE, 1);
                 Settings.System.putInt(getActivity().getContentResolver(),
-                        Settings.System.NAVIGATION_BAR_COLOR, 0xff000000);
-
+                        Settings.System.NAVIGATION_BAR_TINT, -2); 
                 Settings.System.putFloat(getActivity().getContentResolver(),
-                       Settings.System.NAVIGATION_BAR_ALPHA, 0.0f);
+                        Settings.System.NAVIGATION_BAR_ALPHA, 0.0f);
 
                 refreshSettings();
                 return true;
@@ -145,7 +148,7 @@ public class NavBarStyle extends SettingsPreferenceFragment implements
             preference.setSummary(hex);
             int intHex = ColorPickerPreference.convertToColorInt(hex);
             Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.NAVIGATION_BAR_COLOR, intHex);
+                    Settings.System.NAVIGATION_BAR_TINT, intHex);
             return true;
         } else if (preference == mAlphaMode) {
             int alphaMode = Integer.valueOf((String) newValue);
