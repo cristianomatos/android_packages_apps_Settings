@@ -299,6 +299,10 @@ public class NavRing extends Fragment implements
     }
 
     @Override
+    public void onTargetChange(View v, int target) {
+    } 
+
+    @Override
     public void onGrabbed(View v, int handle) {
     }
 

@@ -1715,10 +1715,12 @@
 	<activity android:name=".cyanogenmod.StatusBarStyle" />
 	<activity android:name=".cyanogenmod.StatusBarClockStyle" />
 	<activity android:name=".cyanogenmod.NotificationDrawerStyle" />
-	<activity android:name=".cyanogenmod.StatusBarTrafficColor" />  
+	<activity android:name=".cyanogenmod.StatusBarTrafficColor" />
+	<activity android:name=".cyanogenmod.NavbarSettings" />
+        <activity android:name=".cyanogenmod.NavRingTargets" />
+        <activity android:name=".cyanogenmod.NavbarButtonSettings" />
+        <activity android:name=".cyanogenmod.NavbarStyleDimenSettings" />  
 	<activity android:name=".cyanogenmod.NavBarStyle" />
-	<activity android:name=".cyanogenmod.NavBarDimen" />
-        <activity android:name=".cyanogenmod.NavBarSettings" />
 	<activity android:name=".cyanogenmod.HaloSettings" />
 	<activity android:name=".RamBar" />        
 	<activity android:name=".cyanogenmod.KeyboardInputSettings" />	
