@@ -96,7 +96,7 @@ public class StatusBarStyle extends SettingsPreferenceFragment implements
 
         mAlphaMode = (ListPreference) prefs.findPreference(PREF_STATUS_BAR_ALPHA_MODE);
         int alphaMode = Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.STATUS_BAR_ALPHA_MODE, 1);
+                Settings.System.STATUS_NAV_BAR_ALPHA_MODE, 1);
         mAlphaMode.setValue(String.valueOf(alphaMode));
         mAlphaMode.setSummary(mAlphaMode.getEntry());
         mAlphaMode.setOnPreferenceChangeListener(this);
@@ -116,7 +116,7 @@ public class StatusBarStyle extends SettingsPreferenceFragment implements
         switch (item.getItemId()) {
             case R.id.reset:
                 Settings.System.putInt(getActivity().getContentResolver(),
-                        Settings.System.STATUS_BAR_ALPHA_MODE, 1);
+                        Settings.System.STATUS_NAV_BAR_ALPHA_MODE, 1);
                 Settings.System.putInt(getActivity().getContentResolver(),
                         Settings.System.STATUS_BAR_COLOR, 0xff000000);
 
@@ -156,7 +156,7 @@ public class StatusBarStyle extends SettingsPreferenceFragment implements
             int alphaMode = Integer.valueOf((String) newValue);
             int index = mAlphaMode.findIndexOfValue((String) newValue);
             Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.STATUS_BAR_ALPHA_MODE, alphaMode);
+                    Settings.System.STATUS_NAV_BAR_ALPHA_MODE, alphaMode);
             mAlphaMode.setSummary(mAlphaMode.getEntries()[index]);
             return true;
         }
