@@ -38,14 +38,17 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
     private static final String PREF_MENU_UNLOCK = "pref_menu_display";
     private static final String PREF_GLOW_TIMES = "glow_times";
     private static final String PREF_NAVBAR_MENU_DISPLAY = "navbar_menu_display";
-    private static final String ENABLE_NAVIGATION_BAR = "enable_navigation_bar";
+    private static final String ENABLE_NAVIGATION_BAR = "enable_nav_bar";
     private static final String PREF_BUTTON = "navbar_button_settings";
     private static final String PREF_RING = "navbar_targets_settings";
     private static final String PREF_STYLE_DIMEN = "navbar_style_dimen_settings";
+    private static final String PREF_NAVIGATION_BAR_CAN_MOVE = "navbar_can_move";
+    private static final String KEY_ADVANCED_OPTIONS= "advanced_cat"; 
 
     ListPreference menuDisplayLocation;
     ListPreference mNavBarMenuDisplay;
     CheckBoxPreference mEnableNavigationBar;
+    CheckBoxPreference mNavigationBarCanMove; 
     ListPreference mGlowTimes;
     PreferenceScreen mButtonPreference;
     PreferenceScreen mRingPreference;
@@ -93,6 +96,18 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
         if (hasNavBarByDefault) {
             prefs.removePreference(mEnableNavigationBar);
         }
+
+	mNavigationBarCanMove = (CheckBoxPreference) findPreference(PREF_NAVIGATION_BAR_CAN_MOVE);
+        if (!Utils.isPhone(getActivity())) {
+            PreferenceCategory additionalCategory = (PreferenceCategory) findPreference(KEY_ADVANCED_OPTIONS);
+            Preference mPref = (Preference) findPreference(PREF_NAVIGATION_BAR_CAN_MOVE);
+            if (mPref != null)
+                additionalCategory.removePreference(mNavigationBarCanMove);
+        } else {
+            mNavigationBarCanMove.setChecked(Settings.System.getInt(getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_CAN_MOVE, 1) == 0);
+        } 	
+
     }
 
 
@@ -118,6 +133,11 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
             updateNavbarPreferences(((CheckBoxPreference) preference).isChecked());
             Helpers.restartSystemUI();
             return true;
+	} else if (preference == mNavigationBarCanMove) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_CAN_MOVE,
+                    ((CheckBoxPreference) preference).isChecked() ? 0 : 1);
+            return true; 
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
