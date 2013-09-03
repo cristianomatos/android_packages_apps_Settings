@@ -880,7 +880,6 @@
         <item>@string/size_36_dp</item>
         <item>@string/size_30_dp</item>
         <item>@string/size_24_dp</item>
-        <item>@string/size_0_dp</item>
     </string-array>
 
     <string-array name="navigation_bar_width" translatable="false">
@@ -889,7 +888,6 @@
         <item>36</item>
         <item>30</item>
         <item>24</item>
-        <item>0</item>
     </string-array>
 
     <string-array name="navigation_bar_height_entries" translatable="false">
@@ -900,7 +898,6 @@
         <item>@string/size_36_dp</item>
         <item>@string/size_30_dp</item>
         <item>@string/size_24_dp</item>
-        <item>@string/size_0_dp</item>
     </string-array>
 
     <string-array name="navigation_bar_height" translatable="false">
@@ -911,7 +908,6 @@
         <item>36</item>
         <item>30</item>
         <item>24</item>
-        <item>0</item>
     </string-array>
 
     <string-array name="navigation_bar_height_landscape_entries" translatable="false">
@@ -922,7 +918,6 @@
         <item>@string/size_36_dp</item>
         <item>@string/size_30_dp</item>
         <item>@string/size_24_dp</item>
-        <item>@string/size_0_dp</item>
     </string-array>
 
     <string-array name="navigation_bar_height_landscape" translatable="false">
@@ -933,7 +928,6 @@
         <item>36</item>
         <item>30</item>
         <item>24</item>
-        <item>0</item>
     </string-array>
 
     <string-array name="nav_button_color_mode_entries">

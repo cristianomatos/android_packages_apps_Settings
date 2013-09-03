@@ -195,8 +195,6 @@ public class NavbarStyleDimenSettings extends SettingsPreferenceFragment impleme
                 return getResources().getDimensionPixelSize(R.dimen.navigation_bar_30);
             case 24:
                 return getResources().getDimensionPixelSize(R.dimen.navigation_bar_24);
-            case 0:
-                return 0;
         }
         return -1;
     }
