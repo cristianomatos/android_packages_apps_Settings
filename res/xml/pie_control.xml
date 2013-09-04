@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2013 The CyanogenMod Project
+<!-- Copyright (C) 2013 SlimRoms
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -18,85 +18,61 @@
     android:title="@string/pie_control_title"
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
-    <CheckBoxPreference
-        android:key="pie_control_checkbox"
-        android:title="@string/pie_control_title"
-        android:persistent="false"
-        android:defaultValue="false" />
-
     <ListPreference
-        android:key="pie_control_sensitivity"
-        android:title="@string/pie_control_sensitivity_title"
-        android:dialogTitle="@string/pie_control_sensitivity_title"
-        android:entries="@array/pie_control_sensitivity_entries"
-        android:entryValues="@array/pie_control_sensitivity_values"
-        android:persistent="false"/>
+        android:key="pie_control"
+        android:entries="@array/pie_control_entries"
+        android:entryValues="@array/pie_control_values"
+        android:title="@string/pie_control_title"
+        android:dialogTitle="@string/pie_control_dialog_title" />
 
-    <com.android.settings.cyanogenmod.PieSizePreference
-        android:key="pie_control_size"
-        android:title="@string/pie_control_size"
-        android:dialogTitle="@string/pie_control_size" />
+    <PreferenceScreen
+        android:key="pie_button"
+        android:fragment="com.android.settings.cyanogenmod.PieButtonSettings"
+        android:title="@string/pie_button" />
+
+    <PreferenceScreen
+        android:key="pie_button_style"
+        android:fragment="com.android.settings.cyanogenmod.PieButtonStyleSettings"
+        android:title="@string/pie_button_style" />
+
+    <PreferenceScreen
+        android:key="pie_style"
+        android:fragment="com.android.settings.cyanogenmod.PieStyleSettings"
+        android:title="@string/pie_style" />
+
+    <PreferenceScreen
+        android:key="pie_trigger"
+        android:fragment="com.android.settings.cyanogenmod.PieTriggerSettings"
+        android:title="@string/pie_trigger" />
 
     <PreferenceCategory
-        android:title="@string/pie_control_trigger_positions">
+        android:title="@string/pie_additional_options">
 
         <CheckBoxPreference
-            android:key="pie_control_trigger_left"
-            android:title="@string/pie_control_trigger_left"
-            android:persistent="false"
+            android:key="pie_show_background"
+            android:title="@string/pie_show_background_title"
+            android:summary="@string/pie_show_background_summary"
+            android:defaultValue="true" />
+
+        <CheckBoxPreference
+            android:key="pie_show_snap"
+            android:title="@string/pie_show_snap_title"
+            android:summary="@string/pie_show_snap_summary"
+            android:defaultValue="true" />
+
+        <CheckBoxPreference
+            android:key="pie_show_text"
+            android:title="@string/pie_show_text_title"
+            android:summary="@string/pie_show_text_summary"
+            android:defaultValue="true" />
+
+        <CheckBoxPreference
+            android:key="pie_disable_statusbar_info"
+            android:title="@string/pie_disable_statusbar_info_title"
+            android:summary="@string/pie_disable_statusbar_info_summary"
+            android:dependency="pie_show_text"
             android:defaultValue="false" />
 
-        <CheckBoxPreference
-            android:key="pie_control_trigger_bottom"
-            android:title="@string/pie_control_trigger_bottom"
-            android:persistent="false"
-            android:defaultValue="false" />
+    </PreferenceCategory>
 
-        <CheckBoxPreference
-            android:key="pie_control_trigger_right"
-            android:title="@string/pie_control_trigger_right"
-            android:persistent="false"
-            android:defaultValue="false" />
-
-        <CheckBoxPreference
-            android:key="pie_control_trigger_top"
-            android:title="@string/pie_control_trigger_top"
-            android:summary="@string/pie_control_trigger_top_summary"
-            android:persistent="false"
-            android:defaultValue="false" />
-   </PreferenceCategory>
-
-   <PreferenceCategory
-        android:title="@string/pie_control_color_settings">
-
-        <com.android.settings.cyanogenmod.PieColorPreference
-            android:key="pie_control_color_normal"
-            android:title="@string/pie_control_color_normal"
-            android:defaultValue="FFFFBF00"
-            android:persistent="false" />
-
-        <com.android.settings.cyanogenmod.PieColorPreference
-            android:key="pie_control_color_selected"
-            android:title="@string/pie_control_color_selected"
-            android:defaultValue="FFBFFF00"
-            android:persistent="false" />
-
-        <com.android.settings.cyanogenmod.PieColorPreference
-            android:key="pie_control_color_longpressed"
-            android:title="@string/pie_control_color_longpressed"
-            android:defaultValue="FF8A0808"
-            android:persistent="false" />
-
-        <com.android.settings.cyanogenmod.PieColorPreference
-            android:key="pie_control_color_icon"
-            android:title="@string/pie_control_color_icon"
-            android:defaultValue="FFFFFFFF"
-            android:persistent="false" />
-
-        <CheckBoxPreference
-            android:key="pie_control_outline"
-            android:title="@string/pie_control_outline"
-            android:defaultValue="false"
-            android:persistent="false" />
-    </PreferenceCategory> 	
-</PreferenceScreen>
+</PreferenceScreen> 
