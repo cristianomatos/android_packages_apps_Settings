@@ -1038,37 +1038,6 @@ controle adicionais. \'Remover\' apaga a linha selecionada.
     <string name="custom_density_dialog_button_reboot">Reinciar agora!</string>
     <string name="select_custom_app_title">Escolha uma aplicação custom</string>
 
-    <!-- App sidebar -->
-    <string name="app_sidebar_title">Appbar</string>
-    <string name="app_sidebar_enable_title">Habilite o Appbar</string>
-    <string name="app_sidebar_summary">Configure seu app sidebar</string>
-    <string name="app_sidebar_enable_summaryOn">Appbar está habilitado</string>
-    <string name="app_sidebar_enable_summaryOff">Appbar está desabilitado</string>
-    <string name="app_sidebar_setup_items_title">Configure o que incluir no Appbar</string>
-    <string name="app_sidebar_setup_items_summary">Adicione, remova, e posicione items no Appbar</string>
-    <string name="app_sidebar_transparency_title">Transparência do Appbar</string>
-    <string name="app_sidebar_transparency_summary">Adjuste o nível de transparência do Appbar</string>
-    <string name="app_sidebar_position_title">Posição do Appbar</string>
-    <string name="app_sidebar_position_summary">Posicione o Appbar à esquerda ou direita da tela</string>
-    <string name="app_sidebar_position_left">Esquerda</string>
-    <string name="app_sidebar_position_right">Direita</string>
-    <string name="app_sidebar_hide_labels_title">Esconda o rótulo dos ícones</string>
-    <string name="app_sidebar_hide_labels_summary">Esconda o rótulo dos ícones no Appbar</string>
-    <string name="tab_category">aba visível</string>
-    <string name="use_tab_title">Mostre a tab</string>
-    <string name="use_tab_summary">Exibir uma guia visível no lado que irá ser exibido o \appbar quando tocado</string>
-    <string name="tab_position_title">Localização da aba</string>
-    <string name="tab_position_summary">Mostre a aba no topo, meio ou fundo do lado da tela</string>
-    <string name="tab_size_title">Tamanho da tab</string>
-    <string name="tab_size_summary">Mude o tamanho da aba visível</string>
-    <string name="trigger_category">Região de acionamento</string>
-    <string name="trigger_width_title">Largura da região de acionamento</string>
-    <string name="trigger_width_summary">Ajuste a largura da região de acionamento</string>
-    <string name="trigger_top_title">Posição de acionamento</string>
-    <string name="trigger_top_summary">Ajuste a posição vertical da região de acionamento</string>
-    <string name="trigger_bottom_title">Altura da região de acionamento</string>
-    <string name="trigger_bottom_summary">Ajuste a altura da região de acionamento</string>
-
     <!-- Hardware tunables - Vibrator intensity -->
     <string name="vibrator_intensity_title">Intensidade da vibração</string>
     <string name="vibrator_warning">Valores maiores do que %1$d não são recomendados</string>
