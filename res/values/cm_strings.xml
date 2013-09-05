@@ -557,14 +557,17 @@
     <string name="changelog_unknown">Unknown</string>
     <string name="changelog_version">Version</string>
 
-    <!-- Power menu enable disable -->
+    <!-- Power menu enable disable / Expanded desktop -->
     <string name="power_menu_title">Power menu</string>
     <string name="power_menu_reboot_title">Reboot menu</string>
     <string name="power_menu_screenshot_title">Screenshot</string>
     <string name="power_menu_expanded_desktop">Expanded desktop</string>
-    <string name="expanded_desktop_disabled">Disabled</string>
-    <string name="expanded_desktop_status_bar">Status bar visible</string>
-    <string name="expanded_desktop_no_status_bar">Status bar hidden</string>
+    <string name="summary_expanded_desktop">%1$s</string>
+    <string name="expanded_desktop_summary">Show or change expanded desktop mode</string>
+    <string name="expanded_desktop_disabled">Off</string>
+    <string name="expanded_desktop_only_nav_bar">Hide navigation bar</string>
+    <string name="expanded_desktop_only_status_bar">Hide status bar</string>
+    <string name="expanded_desktop_both_hidden">Hide navigation and status bar</string> 
     <string name="power_menu_profiles_title">Profile switcher</string>
     <string name="power_menu_airplane_title">Airplane mode</string>
     <string name="power_menu_user_title">User switcher</string>

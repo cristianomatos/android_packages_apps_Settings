@@ -39,12 +39,7 @@ limitations under the License.
         android:title="@string/power_menu_expanded_desktop"
         android:entries="@array/expanded_desktop_entries"
         android:entryValues="@array/expanded_desktop_values"
-        android:persistent="false" />
-
-    <CheckBoxPreference
-        android:key="expanded_desktop_no_navbar"
-        android:title="@string/power_menu_expanded_desktop"
-        android:persistent="false" />
+        android:persistent="false" /> 
 
     <ListPreference
         android:key="listview_animation"

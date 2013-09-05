@@ -28,7 +28,8 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
-import android.preference.ListPreference; 
+import android.preference.ListPreference;
+import android.preference.Preference.OnPreferenceChangeListener;  
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.util.Log;
@@ -63,7 +64,7 @@ public class SystemUiSettings extends SettingsPreferenceFragment implements Pref
     private static final String KEY_PIE_SETTINGS = "pie_settings";   
 
     private PreferenceScreen mPieControl;
-    private ListPreference mExpandedDesktopPref;
+    private ListPreference mExpandedDesktopPref; 
     private CheckBoxPreference mExpandedDesktopNoNavbarPref;
     private ListPreference mLowBatteryWarning;
     private CheckBoxPreference mScreenOnNotificationLed;
@@ -151,33 +152,34 @@ public class SystemUiSettings extends SettingsPreferenceFragment implements Pref
         }
 	
         // Expanded desktop
-        mExpandedDesktopPref = (ListPreference) findPreference(KEY_EXPANDED_DESKTOP);
-        mExpandedDesktopNoNavbarPref = (CheckBoxPreference) findPreference(KEY_EXPANDED_DESKTOP_NO_NAVBAR);
-
+        mExpandedDesktopPref = (ListPreference) prefScreen.findPreference(KEY_EXPANDED_DESKTOP);
+        mExpandedDesktopPref.setOnPreferenceChangeListener(this);
         int expandedDesktopValue = Settings.System.getInt(getContentResolver(),
-                Settings.System.EXPANDED_DESKTOP_STYLE, 0);
+                        Settings.System.EXPANDED_DESKTOP_STYLE, 0);
+        mExpandedDesktopPref.setValue(String.valueOf(expandedDesktopValue));
+        mExpandedDesktopPref.setSummary(mExpandedDesktopPref.getEntries()[expandedDesktopValue]); 
 
         // Hide no-op "Status bar visible" mode on devices without navbar
-        try {
-            if (WindowManagerGlobal.getWindowManagerService().hasNavigationBar()) {
-                mExpandedDesktopPref.setOnPreferenceChangeListener(this);
-                mExpandedDesktopPref.setValue(String.valueOf(expandedDesktopValue));
-                updateExpandedDesktop(expandedDesktopValue);
-                prefScreen.removePreference(mExpandedDesktopNoNavbarPref);
-            } else {
+        //try {
+        //    if (WindowManagerGlobal.getWindowManagerService().hasNavigationBar()) {
+        //        mExpandedDesktopPref.setOnPreferenceChangeListener(this);
+        //        mExpandedDesktopPref.setValue(String.valueOf(expandedDesktopValue));
+        //        updateExpandedDesktop(expandedDesktopValue);
+        //        prefScreen.removePreference(mExpandedDesktopNoNavbarPref);
+        //    } else {
 		// enable "Status bar visible" mode on devices without navbar
 		// even in devices with no nav bar support by default
-		mExpandedDesktopPref.setOnPreferenceChangeListener(this);
-                mExpandedDesktopPref.setValue(String.valueOf(expandedDesktopValue));
-                updateExpandedDesktop(expandedDesktopValue);
-                prefScreen.removePreference(mExpandedDesktopNoNavbarPref);
+	//	mExpandedDesktopPref.setOnPreferenceChangeListener(this);
+        //        mExpandedDesktopPref.setValue(String.valueOf(expandedDesktopValue));
+        //        updateExpandedDesktop(expandedDesktopValue);
+        //        prefScreen.removePreference(mExpandedDesktopNoNavbarPref);
                 //mExpandedDesktopNoNavbarPref.setOnPreferenceChangeListener(this);
                 //mExpandedDesktopNoNavbarPref.setChecked(expandedDesktopValue > 0);
                 //prefScreen.removePreference(mExpandedDesktopPref);
-            }
-        } catch (RemoteException e) {
-            Log.e(TAG, "Error getting navigation bar status");
-        }
+        //    }
+        //} catch (RemoteException e) {
+        //    Log.e(TAG, "Error getting navigation bar status");
+        //}
 
 	final boolean hasSlimPieByDefault = getResources().getBoolean(
                 com.android.internal.R.bool.config_slimPie);
@@ -216,8 +218,18 @@ public class SystemUiSettings extends SettingsPreferenceFragment implements Pref
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         if (preference == mExpandedDesktopPref) {
             int expandedDesktopValue = Integer.valueOf((String) objValue);
-            updateExpandedDesktop(expandedDesktopValue);
-            return true;
+            int index = mExpandedDesktopPref.findIndexOfValue((String) objValue);
+            if (expandedDesktopValue == 0) {
+                Settings.System.putInt(getContentResolver(),
+                        Settings.System.POWER_MENU_EXPANDED_DESKTOP_ENABLED, 0);
+            } else {
+                Settings.System.putInt(getContentResolver(),
+                        Settings.System.POWER_MENU_EXPANDED_DESKTOP_ENABLED, 1);
+            }
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.EXPANDED_DESKTOP_STYLE, expandedDesktopValue);
+            mExpandedDesktopPref.setSummary(mExpandedDesktopPref.getEntries()[index]);
+            return true; 
 	} else if (preference == mListViewAnimation) {
             int listviewanimation = Integer.valueOf((String) objValue);
             int index = mListViewAnimation.findIndexOfValue((String) objValue);
