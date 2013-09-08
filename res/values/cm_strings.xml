@@ -103,7 +103,7 @@
 
     <!-- crDroid Version -->	
     <string name="crDroid_version">crDroid AOSP version</string>
-    <string name="crDroid_version_default">Build 12</string>
+    <string name="crDroid_version_default">Build 15</string>
 
     <!-- About phone screen, build date of ROM -->
     <string name="build_date">Build date</string>
@@ -1184,7 +1184,8 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="open_ime_switcher">Open IME Switcher</string>
     <string name="kill_app">Kill app</string>
     <string name="lastapp">Last app</string> 
-    <string name="power">Power</string>
+    <string name="power">Screen off</string>
+    <string name="quicksettings">Quicksettings panel</string> 	
     <string name="notifications">Notifications</string>
     <string name="custom_app">Custom app</string>
     <string name="menu_power">Power menu</string>
