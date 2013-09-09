@@ -44,7 +44,6 @@ import android.view.View;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.R;
 import com.android.settings.util.CMDProcessor;
-import com.android.settings.util.Helpers;
 
 public class UserInterface extends SettingsPreferenceFragment {
 

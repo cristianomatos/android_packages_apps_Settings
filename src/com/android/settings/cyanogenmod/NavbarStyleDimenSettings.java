@@ -17,8 +17,10 @@
 package com.android.settings.cyanogenmod;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.preference.CheckBoxPreference;
@@ -44,24 +46,33 @@ public class NavbarStyleDimenSettings extends SettingsPreferenceFragment impleme
         OnPreferenceChangeListener {
 
     private static final String TAG = "NavBarStyleDimen";
-    private static final String PREF_NAV_GLOW_COLOR = "nav_button_glow_color";
     private static final String PREF_NAVIGATION_BAR_HEIGHT = "navigation_bar_height";
     private static final String PREF_NAVIGATION_BAR_HEIGHT_LANDSCAPE = "navigation_bar_height_landscape";
     private static final String PREF_NAVIGATION_BAR_WIDTH = "navigation_bar_width";
-    private static final String KEY_DIMEN_OPTIONS = "navbar_dimen"; 
+    private static final String KEY_DIMEN_OPTIONS = "navbar_dimen";
+    private static final String PREF_NAV_BAR_ALPHA = "nav_bar_alpha";
+    private static final String PREF_NAV_BAR_ALPHA_MODE = "nav_bar_alpha_mode";
+    private static final String PREF_NAV_BAR_COLOR = "nav_bar_color";
 
-    ColorPickerPreference mNavigationBarGlowColor;
+    private static final int MENU_RESET = Menu.FIRST;
+
+    private boolean mCheckPreferences;
+
     ListPreference mNavigationBarHeight;
     ListPreference mNavigationBarHeightLandscape;
     ListPreference mNavigationBarWidth;
-    
+    SeekBarPreference mNavBarTransparency;
+    ColorPickerPreference mNavBarColor;
+    ListPreference mAlphaMode;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         refreshSettings();
     }
 
-    public void refreshSettings() {
+    private PreferenceScreen refreshSettings() {
+        mCheckPreferences = false;
         PreferenceScreen prefs = getPreferenceScreen();
         if (prefs != null) {
             prefs.removeAll();
@@ -72,54 +83,93 @@ public class NavbarStyleDimenSettings extends SettingsPreferenceFragment impleme
 
         prefs = getPreferenceScreen();
 
-        mNavigationBarGlowColor = (ColorPickerPreference) findPreference(PREF_NAV_GLOW_COLOR);
-        mNavigationBarGlowColor.setOnPreferenceChangeListener(this);
+        mNavBarColor = (ColorPickerPreference) findPreference(PREF_NAV_BAR_COLOR);
+        mNavBarColor.setOnPreferenceChangeListener(this);
         int intColor = Settings.System.getInt(getActivity().getContentResolver(),
-                    Settings.System.NAVIGATION_BAR_GLOW_TINT, 0xffffffff);
-	if (intColor == 0xffffffff) {
-            mNavigationBarGlowColor.setSummary(getResources().getString(R.string.color_default));
+                    Settings.System.NAVIGATION_BAR_TINT, -2);
+        if (intColor == -2) {
+            intColor = getResources().getColor(
+                    com.android.internal.R.color.black);
+            mNavBarColor.setSummary(getResources().getString(R.string.color_default));
         } else {
             String hexColor = String.format("#%08x", (0xffffffff & intColor));
-            mNavigationBarGlowColor.setSummary(hexColor);
-        } 
-        mNavigationBarGlowColor.setNewPreviewColor(intColor);
+            mNavBarColor.setSummary(hexColor);
+        }
+        mNavBarColor.setNewPreviewColor(intColor);
 
-        mNavigationBarHeight = (ListPreference) findPreference(PREF_NAVIGATION_BAR_HEIGHT); 
+        float navBarTransparency = 0.0f;
+        try{
+            navBarTransparency = Settings.System.getFloat(getActivity()
+                 .getContentResolver(), Settings.System.NAVIGATION_BAR_ALPHA);
+        } catch (Exception e) {
+            navBarTransparency = 0.0f;
+            Settings.System.putFloat(getActivity().getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_ALPHA, 0.0f);
+        }
+        mNavBarTransparency = (SeekBarPreference) findPreference(PREF_NAV_BAR_ALPHA);
+        mNavBarTransparency.setProperty(Settings.System.NAVIGATION_BAR_ALPHA);
+        mNavBarTransparency.setInitValue((int) (navBarTransparency * 100));
+        mNavBarTransparency.setOnPreferenceChangeListener(this);
+
+        mAlphaMode = (ListPreference) prefs.findPreference(PREF_NAV_BAR_ALPHA_MODE);
+        int alphaMode = Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.STATUS_NAV_BAR_ALPHA_MODE, 1);
+        mAlphaMode.setValue(String.valueOf(alphaMode));
+        mAlphaMode.setSummary(mAlphaMode.getEntry());
+        mAlphaMode.setOnPreferenceChangeListener(this);
+
+        mNavigationBarHeight = (ListPreference) findPreference(PREF_NAVIGATION_BAR_HEIGHT);
         mNavigationBarHeight.setOnPreferenceChangeListener(this);
 
-        mNavigationBarHeightLandscape = (ListPreference) findPreference(PREF_NAVIGATION_BAR_HEIGHT_LANDSCAPE); 
+        mNavigationBarHeightLandscape = (ListPreference) findPreference(PREF_NAVIGATION_BAR_HEIGHT_LANDSCAPE);
         mNavigationBarHeightLandscape.setOnPreferenceChangeListener(this);
 
         mNavigationBarWidth = (ListPreference) findPreference(PREF_NAVIGATION_BAR_WIDTH);
         if (!Utils.isPhone(getActivity())) {
             PreferenceCategory dimenCategory = (PreferenceCategory) findPreference(KEY_DIMEN_OPTIONS);
-            Preference mPref = (Preference) findPreference(PREF_NAVIGATION_BAR_WIDTH);
-            if (mPref != null)
+            if (mNavigationBarWidth != null)
                 dimenCategory.removePreference(mNavigationBarWidth);
         } else {
             mNavigationBarWidth.setOnPreferenceChangeListener(this);
-        } 
+        }
 
         setHasOptionsMenu(true);
+        mCheckPreferences = true;
+        return prefs;
     }
 
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.nav_bar_style_dimen, menu);
+        menu.add(0, MENU_RESET, 0, R.string.navbar_reset)
+                .setIcon(R.drawable.ic_settings_backup) // use the backup icon
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.reset:
-		Settings.System.putInt(getActivity().getContentResolver(),
-                        Settings.System.NAVIGATION_BAR_GLOW_TINT, 0xffffffff);
-
-                refreshSettings();
+            case MENU_RESET:
+                resetToDefault();
                 return true;
-            case R.id.reset_dimen:
+             default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
+    private void resetToDefault() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+        alertDialog.setTitle(R.string.navbar_reset);
+        alertDialog.setMessage(R.string.navbar_dimensions_style_reset_message);
+        alertDialog.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                Settings.System.putInt(getActivity().getContentResolver(),
+                        Settings.System.STATUS_NAV_BAR_ALPHA_MODE, 1);
+                Settings.System.putInt(getActivity().getContentResolver(),
+                        Settings.System.NAVIGATION_BAR_TINT, -2);
+
+                Settings.System.putFloat(getActivity().getContentResolver(),
+                       Settings.System.NAVIGATION_BAR_ALPHA, 0.0f);
                 int height = mapChosenDpToPixels(48);
                 Settings.System.putInt(getContentResolver(),
                         Settings.System.NAVIGATION_BAR_HEIGHT_LANDSCAPE,
@@ -135,31 +185,19 @@ public class NavbarStyleDimenSettings extends SettingsPreferenceFragment impleme
                 mNavigationBarHeight.setValue("48");
                 mNavigationBarHeightLandscape.setValue("48");
                 mNavigationBarWidth.setValue("42");
-
                 refreshSettings();
-                return true;
-             default:
-                return super.onContextItemSelected(item);
-        }
-    }
-
-    @Override
-    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
-            Preference preference) {
-        return super.onPreferenceTreeClick(preferenceScreen, preference);
+            }
+        });
+        alertDialog.setNegativeButton(R.string.cancel, null);
+        alertDialog.create().show();
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        if (preference == mNavigationBarGlowColor) {
-            String hex = ColorPickerPreference.convertToARGB(
-                    Integer.valueOf(String.valueOf(newValue)));
-            preference.setSummary(hex);
-            int intHex = ColorPickerPreference.convertToColorInt(hex);
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.NAVIGATION_BAR_GLOW_TINT, intHex);
-            return true;
-        } else if (preference == mNavigationBarWidth) {
+        if (!mCheckPreferences) {
+            return false;
+        }
+        if (preference == mNavigationBarWidth) {
             String newVal = (String) newValue;
             int dp = Integer.parseInt(newVal);
             int width = mapChosenDpToPixels(dp);
@@ -181,6 +219,27 @@ public class NavbarStyleDimenSettings extends SettingsPreferenceFragment impleme
                     Settings.System.NAVIGATION_BAR_HEIGHT_LANDSCAPE,
                     height);
             return true;
+        } else if (preference == mNavBarTransparency) {
+            float valStat = Float.parseFloat((String) newValue);
+            Settings.System.putFloat(getActivity().getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_ALPHA,
+                    valStat / 100);
+            return true;
+        } else if (preference == mNavBarColor) {
+            String hex = ColorPickerPreference.convertToARGB(
+                    Integer.valueOf(String.valueOf(newValue)));
+            preference.setSummary(hex);
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_TINT, intHex);
+            return true;
+        } else if (preference == mAlphaMode) {
+            int alphaMode = Integer.valueOf((String) newValue);
+            int index = mAlphaMode.findIndexOfValue((String) newValue);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STATUS_NAV_BAR_ALPHA_MODE, alphaMode);
+            mAlphaMode.setSummary(mAlphaMode.getEntries()[index]);
+            return true;
         }
         return false;
     }
@@ -201,7 +260,7 @@ public class NavbarStyleDimenSettings extends SettingsPreferenceFragment impleme
                 return getResources().getDimensionPixelSize(R.dimen.navigation_bar_30);
             case 24:
                 return getResources().getDimensionPixelSize(R.dimen.navigation_bar_24);
-	    case 0:
+            case 0:
                 return 0;
         }
         return -1;

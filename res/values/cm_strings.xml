@@ -103,7 +103,7 @@
 
     <!-- crDroid Version -->	
     <string name="crDroid_version">crDroid AOSP version</string>
-    <string name="crDroid_version_default">Build 7</string>
+    <string name="crDroid_version_default">Build 12</string>
 
     <!-- About phone screen, build date of ROM -->
     <string name="build_date">Build date</string>
@@ -1091,7 +1091,6 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="statusbar_quick_peek_title">Quick Peek</string>
     <string name="statusbar_quick_peek_summary">Peek at statusbar by swiping from top edge of screen</string>
 
-    <!-- Slim Pie -->
     <!-- Quick/Pie Control -->
     <string name="pie_control_title">SlimPIE</string>
     <string name="pie_control_dialog_title">SlimPIE</string>
@@ -1105,7 +1104,7 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="pie_control_trigger_right">Trigger right screen border</string>
     <string name="pie_control_trigger_top">Trigger top screen border</string>
     <string name="pie_control_trigger_top_summary">Only navigation will be displayed at top</string>
-    <string name="pie_button_style">Button style</string>
+    <string name="pie_button_style">Buttons style</string>
     <string name="pie_button_color_title">Button color</string>
     <string name="pie_button_alpha_title">Button transparency</string>
     <string name="pie_button_outline_color_title">Button outline color</string>
@@ -1117,9 +1116,6 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="pie_icon_color_mode_title">Button icon color mode</string>
     <string name="pie_icon_color_mode_dialog_title">Colorize</string>
     <string name="pie_icon_color_mode_summary">Change the button icon color mode</string>
-    <string name="pie_icon_color_mode_all_icons">All icons</string>
-    <string name="pie_icon_color_mode_system_icons">System icons</string>
-    <string name="pie_icon_color_mode_system_custom_icons">System and custom icons</string>
     <string name="pie_trigger_dimens_options">Trigger dimensions</string>
     <string name="pie_trigger_thickness_title">Trigger thickness</string>
     <string name="pie_trigger_height_title">Trigger height left and right</string>
@@ -1128,7 +1124,7 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="pie_trigger_gravity_left_right_bottom">Bottom</string>
     <string name="pie_trigger_gravity_left_right_center">Center</string>
     <string name="pie_trigger_gravity_left_right_top">Top</string>
-    <string name="menu_pie_trigger_settings_reset">Reset trigger dimensions</string> 
+    <string name="menu_pie_trigger_settings_reset">Reset trigger dimensions</string>
     <string name="pie_trigger">Trigger options</string>
     <string name="pie_trigger_note_title">Note</string>
     <string name="pie_trigger_note_summary">To avoid conflicts with status bar or navigation bar, the triggers on these edges are automatically turned off if one or both are visible</string>
@@ -1139,11 +1135,10 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="pie_text_color_title">Text color</string>
     <string name="pie_background_alpha_title">Background transparency</string>
     <string name="pie_mirror_right_title">Mirror right pie</string>
-    <string name="pie_mirror_right_summary">Mirror right pie on the horizontal axis</string> 
+    <string name="pie_mirror_right_summary">Mirror right pie on the horizontal axis</string>
     <string name="pie_style">Style and dimension</string>
     <string name="pie_style_title">Style</string>
     <string name="pie_dimens_title">Dimension</string>
-    <string name="pie_default">Default</string>
     <string name="pie_additional_options">Additional options</string>
     <string name="pie_show_snap_title">Show snap points</string>
     <string name="pie_show_snap_summary">Shows snap points to change the trigger edge dynamically</string>
@@ -1153,34 +1148,15 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="pie_disable_statusbar_info_summary">Hide redundant statusbar information</string>
     <string name="pie_show_background_title">Show background</string>
     <string name="pie_show_background_summary">Enable pie screen background</string>
-    <string name="menu_pie_style_reset">Reset style</string>
-    <string name="menu_pie_button_style_reset">Reset button style</string>
-    <string name="menu_pie_button_reset">Reset buttons</string>
-    <string name="pie_qty_title">Button quantity</string>
-    <string name="pie_qty_summary">Changing this will reset your current buttons</string>
-    <string name="pie_action_title">Button %1$s action &amp; icon</string>
-    <string name="pie_longpress_title">Button %1$s longpress action</string>
-    <string name="pie_enable_long">Enable longpress for pie buttons</string>
     <string name="pie_button">Buttons</string>
-    <string name="pie_button_cat">Buttons</string>
-    <string name="pie_buttons_options">Button options</string>
     <string name="pie_second_layer_title">Enable second layer</string>
     <string name="pie_second_layer_summary">Enable or disable second button row</string>
     <string name="pie_button_second_layer">Buttons second layer</string>
-    <string name="pie_button_second_layer_cat">Buttons second layer</string> 
-    <string name="pie_action_custom_app">Custom app</string>
-    <string name="pie_action_home">Home</string>
-    <string name="pie_action_back">Back</string>
-    <string name="pie_action_recents">Recents</string>
-    <string name="pie_action_lastapp">Last app</string>
-    <string name="pie_action_search">Search</string>
-    <string name="pie_action_screenshot">Screenshot</string>
-    <string name="pie_action_menu">Menu</string>
-    <string name="pie_action_ime">Open IME Switcher</string>
-    <string name="pie_action_kill">Kill app</string>
-    <string name="pie_action_power">Screen Off</string>
-    <string name="pie_action_notifications">Notifications</string>
-    <string name="pie_action_none">None</string>  
+    <string name="pie_button_second_layer_summary">Change second layer buttons</string>
+    <string name="pie_button_style_summary">Change pie button style</string>
+    <string name="pie_reset">Reset</string>
+    <string name="pie_style_reset_message">Reset style entries to default?</string>
+    <string name="pie_trigger_reset_message">Reset trigger entries to default?</string>   
 
     <!-- NavBar -->
     <string name="right">Right</string>
@@ -1236,34 +1212,17 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="size_2_dp">2 dp</string>
     <string name="size_3_dp">3 dp</string>
     <string name="size_4_dp">4 dp</string>
-    <string name="menu_nav_bar_style_reset">Reset navbar glow color</string>
-    <string name="menu_nav_bar_dimen_reset">Reset navbar dimensions</string>
-    <string name="menu_nav_bar_button_reset">Reset navbar buttons</string>
-    <string name="menu_nav_ring_targets_reset">Reset navring targets</string>
-
+    
     <!-- Navigation Bar -->
+    <string name="navbar_reset">Reset</string>
+    <string name="navbar_button_style_reset_message">Reset all style entries to default?</string>
+    <string name="navbar_dimensions_style_reset_message">Reset all style and dimensions entries to default?</string> 
     <string name="navigation_bar">Navigation bar</string>
     <string name="navbar_button_cat">Navigation bar buttons</string>
     <string name="title_pref_menu_display">Menu location</string>
     <string name="summary_pref_menu_display">Remember to remove your menu buttons if you\'re using the big menu button!</string>
     <string name="title_pref_navigation_menu_display">Menu visibility</string>
     <string name="summary_pref_navigation_menu_display">How and when do you want the menu buttons to appear?</string>
-    <string name="navbar_qty_title">Navigation button quantity</string>
-    <string name="navbar_qty_summary">Changing this will reset your current buttons</string>
-    <string name="navbar_action_title">Button %1$s action &amp; icon</string>
-    <string name="navbar_longpress_title">Button %1$s longpress action</string>
-    <string name="navbar_action_home">Home</string>
-    <string name="navbar_action_back">Back</string>
-    <string name="navbar_action_recents">Recents</string>
-    <string name="navbar_action_lastapp">Last app</string> 
-    <string name="navbar_action_search">Search</string>
-    <string name="navbar_action_screenshot">Screenshot</string>
-    <string name="navbar_action_menu">Menu</string>
-    <string name="navbar_action_ime">Open IME Switcher</string>
-    <string name="navbar_action_kill">Kill task</string>
-    <string name="navbar_action_power">Power</string>
-    <string name="navbar_action_notifications">Notifications</string>
-    <string name="navbar_action_none">None</string>
     <string name="navbar_enable_bar">Enable navigation bar</string>
     <string name="navbar_enable_bar_summary">Enable the navigation bar</string>
     <string name="navigation_bar_height_title">Navigation bar height</string>
@@ -1272,70 +1231,31 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="navigation_bar_height_landscape_summary">Navigation bar height while in landscape.</string>
     <string name="navigation_bar_width_title">Navigation bar width</string>
     <string name="navigation_bar_width_summary">Navigation bar height if the bar is along a side.</string>
-    <string name="navbar_enable_dialog_title">Reboot required!</string>
-    <string name="navbar_enable_dialog_msg">You <b>should</b> reboot right now to make sure everything works properly!</string>
-    <string name="navbar_enable_dialog_negative">I\'ll reboot later</string>
-    <string name="navbar_enable_dialog_Positive">Reboot now!</string>
-    <string name="navbar_height_dialog_title">Reboot required!</string>
-    <string name="navbar_height_dialog_summary">Please reboot for navigation bar height and width changes to apply properly!</string>
-    <string name="navbar_height_dialog_button_later">I\'ll reboot later</string>
-    <string name="navbar_height_dialog_button_reboot">Reboot now!</string>
-    <string name="navigation_bar_glow_tint_title">Navigation bar glow color</string>
-    <string name="glow_times_title">Button glow animation</string>
-    <string name="glow_times_off">Off</string>
-    <string name="glow_times_superquick">Super quick</string>
-    <string name="glow_times_quick">Quick</string>
-    <string name="glow_times_normal">Normal</string>
     <string name="navbar_can_move">Show landscape</string>
     <string name="navbar_can_move_summary">Shows navigation bar in lanscape on the bottom</string> 
-
-    <!-- Nav Ring Targets -->
-    <string name="navbar_ring_cat">Navigation Bar Ring Targets</string>
-    <string name="interface_softkey_settings">Softkey Settings</string>
-    <string name="interface_softkeys_pref_default_title">Target %1$s short press activity</string>
-    <string name="interface_softkeys_pref_long_title">Target %1$s long press activity</string>
-    <string name="interface_softkeys_pref_default_summary">Tap the settings icon to select a custom long press activity</string>
-    <string name="interface_softkeys_activity_dialog_title">Select Activity</string>
-    <string name="interface_softkeys_reboot_title">Reboot Menu</string>
-    <string name="interface_softkeys_screenshot_title">Screenshot</string>
-    <string name="interface_softkeys_screenoff_title">Screen Off</string>
-    <string name="interface_softkeys_ime_switcher_title">Open IME Switcher</string>
-    <string name="interface_softkeys_ring_vib_title">Toggle Ring/Vib</string>
-    <string name="interface_softkeys_ring_silent_title">Toggle Ring/Silent</string>
-    <string name="interface_softkeys_ring_vib_silent_title">Toggle Ring/Vib/Silent</string>
-    <string name="interface_softkeys_kill_process_title">Kill App</string>
-    <string name="interface_softkey_package_removed">The previously selected package was not found</string>
-    <string name="interface_navring_settings_title">Navigation bar ring</string>
-    <string name="interface_navring_settings_summary">Edit your custom navring apps</string>
-    <string name="title_navring_amount">Number of navring targets</string>
-    <string name="summary_navring_amount">Changing this will reset your current targets</string>
-    <string name="interface_navring_custom_pref_summary">Release on target to launch </string>
-    <string name="interface_navring_pref_default_summary">Tap to select a custom ring target activity</string>
-    <string name="interface_navring_assist_title">Google Now / web search</string>
-    <string name="interface_navring">Ring Targets</string>
-    <string name="navbar_ring">Custom Ring Targets</string>
-    <string name="navring_enable_long">Enable longpress for navring</string>
 
     <string name="navbar_style_dimen_title">Style and dimensions</string>
     <string name="navbar_button_title">Buttons</string>
     <string name="navbar_targets_title">Ring targets</string>
     <string name="navbar_cat">Navigation bar</string>
-    <string name="navbar_enable_long">Enable longpress for navbar</string>
-    <string name="ring_targets_cat_title">Navigation ring targets</string>
     <string name="navbar_style_cat">Navigation bar style</string>
     <string name="navbar_dimen_cat">Navigation bar dimensions</string>
     
     <!-- Navigation bar button style -->
-    <string name="nav_bar_button_style">Navigation bar button style</string>
-    <string name="nav_bar_button_style_reset">Reset</string>
-    <string name="button_transparency_title">Navigation bar button transparency</string>
+    <string name="nav_bar_button_style">Button style</string>
+    <string name="nav_bar_button_style_summary">Change navigation bar button style</string>
+    <string name="button_transparency_title">Button transparency</string>
+    <string name="navigation_bar_icon_tint_title">Button color</string> 
     <string name="navigation_bar_icon_tint_title">Navigation bar button color</string>
     <string name="nav_button_color_mode_title">Color mode</string>
     <string name="nav_button_color_mode_dialog_title">Colorize</string>
     <string name="nav_button_color_mode_summary">Change the navigation bar button color mode</string>
-    <string name="nav_button_color_mode_all_icons">All icons</string>
-    <string name="nav_button_color_mode_system_icons">System icons</string>
-    <string name="nav_button_color_mode_system_custom_icons">System and custom icons</string> 
+    <string name="navigation_bar_glow_tint_title">Button glow color</string>
+    <string name="glow_times_title">Button glow animation</string>
+    <string name="glow_times_off">Off</string>
+    <string name="glow_times_superquick">Super quick</string>
+    <string name="glow_times_quick">Quick</string>
+    <string name="glow_times_normal">Normal</string>  
 
     <!-- Navigation bar background style -->
     <string name="nav_bar_transparency_title">Navigation bar transparency</string>
@@ -1346,8 +1266,108 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="nav_bar_alpha_mode_home">on launcher</string>
     <string name="nav_bar_alpha_mode_default">on launcher and lockscreen</string>
     <string name="nav_bar_alpha_mode_always">always</string>
-    <string name="nav_bar_style_reset">Reset</string>   
 
+    <!-- Button shorcut actions -->
+    <string name="shortcut_action_app">Custom app</string>
+    <string name="shortcut_action_home">Home</string>
+    <string name="shortcut_action_back">Back</string>
+    <string name="shortcut_action_recent">Recents</string>
+    <string name="shortcut_action_lastapp">Last app</string>
+    <string name="shortcut_action_search">Search</string>
+    <string name="shortcut_action_screenshot">Screenshot</string>
+    <string name="shortcut_action_menu">Menu</string>
+    <string name="shortcut_action_ime">Open IME Switcher</string>
+    <string name="shortcut_action_kill">Kill app</string>
+    <string name="shortcut_action_widget">Widgets viewpager</string>
+    <string name="shortcut_action_power">Screen Off</string>
+    <string name="shortcut_action_notifications">Notifications</string>
+    <string name="shortcut_action_qs">Quicksettings panel</string>
+    <string name="shortcut_action_none">None</string>
+    <string name="shortcut_action_ring_vib">Ring/Vib</string>
+    <string name="shortcut_action_ring_silent">Ring/Silent</string>
+    <string name="shortcut_action_ring_vib_silent">Ring/Vib/Silent</string>
+
+    <string name="shortcut_action_longpress">Longpress:</string>
+    <string name="shortcut_action_select_action_longpress">Choose longpress action:</string>
+    <string name="shortcut_action_select_action">Choose action:</string>
+    <string name="shortcut_action_select_action_newbutton">Choose new button:</string>
+    <string name="shortcut_action_reset">Reset</string>
+    <string name="shortcut_action_add">Add</string>
+    <string name="shortcut_action_reset_message">Reset all entries to default?</string>
+    <string name="shortcut_action_max">Maximum entries size has been reached</string>
+    <string name="shortcut_action_warning">Warning</string>
+    <string name="shortcut_action_warning_message">It is not possible to delete last entry</string>
+    <string name="shortcut_action_disable_message">Disabled\nAdd an entry to enable this feature</string>
+
+    <string name="shortcut_action_help_shortcut">shortcut</string>
+    <string name="shortcut_action_help_button">button</string>
+    <string name="shortcut_action_help_icon">, while selecting the icon will bring up customization options</string>
+    <string name="shortcut_action_help_main">To add a %1$s, select the Add icon.  Once a %1$s is added, selecting the row will change the target%2$s\n\nTo remove a %1$s, swipe the row horizontally left or right.  Re-order a %1$s in the list by vertically dragging the anchor on the left.\n\nTo clear or reset to defaults, select the Reset icon.</string>
+    <string name="shortcut_action_help_delete_last_entry">Removing every %1$s in the list will disable the feature entirely.</string>
+    <string name="shortcut_action_help">Help</string> 
+
+    <string name="icon_picker_type">Select icon type:</string>
+    <string name="icon_default">Default</string>
+    <string name="icon_presets">System icons</string>
+    <string name="icon_custom">Gallery</string>
+    <string name="shortcuts_icon_picker_alarm">Alarm</string>
+    <string name="shortcuts_icon_picker_andy">Andy</string>
+    <string name="shortcuts_icon_picker_battery">Battery</string>
+    <string name="shortcuts_icon_picker_browser">Browser</string>
+    <string name="shortcuts_icon_picker_calendar">Calendar</string>
+    <string name="shortcuts_icon_picker_camera">Camera</string>
+    <string name="shortcuts_icon_picker_cloud">Cloud</string>
+    <string name="shortcuts_icon_picker_contact">Contact</string>
+    <string name="shortcuts_icon_picker_directdial">Direct Dial</string>
+    <string name="shortcuts_icon_picker_directmessage">Direct Message</string>
+    <string name="shortcuts_icon_picker_drive">Drive</string>
+    <string name="shortcuts_icon_picker_dropbox">Dropbox</string>
+    <string name="shortcuts_icon_picker_email">Email</string>
+    <string name="shortcuts_icon_picker_email2">Email Alternate</string>
+    <string name="shortcuts_icon_picker_evernote">Evernote</string>
+    <string name="shortcuts_icon_picker_facebook">Facebook</string>
+    <string name="shortcuts_icon_picker_favorite">Favorite</string>
+    <string name="shortcuts_icon_picker_file_browser">File Browser</string>
+    <string name="shortcuts_icon_picker_file_browser2">File Browser Alternate</string>
+    <string name="shortcuts_icon_picker_fitness">Fitness</string>
+    <string name="shortcuts_icon_picker_gallery">Gallery</string>
+    <string name="shortcuts_icon_picker_gears">Gears</string>
+    <string name="shortcuts_icon_picker_google_small">Google</string>
+    <string name="shortcuts_icon_picker_gplus">Google Plus</string>
+    <string name="shortcuts_icon_picker_gtalk">Hangouts</string>
+    <string name="shortcuts_icon_picker_help">Help</string>
+    <string name="shortcuts_icon_picker_joystick">Joystick</string>
+    <string name="shortcuts_icon_picker_key">Keys/Accounts</string>
+    <string name="shortcuts_icon_picker_laptop">Laptop</string>
+    <string name="shortcuts_icon_picker_notes">Notes</string>
+    <string name="shortcuts_icon_picker_luggage">Travel</string>
+    <string name="shortcuts_icon_picker_maps">Maps</string>
+    <string name="shortcuts_icon_picker_market">Market</string>
+    <string name="shortcuts_icon_picker_movie">Movies</string>
+    <string name="shortcuts_icon_picker_music">Music</string>
+    <string name="shortcuts_icon_picker_nav">Navigation</string>
+    <string name="shortcuts_icon_picker_phone">Phone</string>
+    <string name="shortcuts_icon_picker_package">Package</string>
+    <string name="shortcuts_icon_picker_pinterest">Pinterest</string>
+    <string name="shortcuts_icon_picker_play">Play</string>
+    <string name="shortcuts_icon_picker_pocket">Pocket</string>
+    <string name="shortcuts_icon_picker_podcast">Podcast</string>
+    <string name="shortcuts_icon_picker_quicksettings">Quick Settings</string>
+    <string name="shortcuts_icon_picker_rss">RSS Feed</string>
+    <string name="shortcuts_icon_picker_sdcard">SDCard</string>
+    <string name="shortcuts_icon_picker_search">Search</string>
+    <string name="shortcuts_icon_picker_sms">Messaging</string>
+    <string name="shortcuts_icon_picker_tasks">Tasks</string>
+    <string name="shortcuts_icon_picker_terminal">Terminal</string>
+    <string name="shortcuts_icon_picker_transit">Transit</string>
+    <string name="shortcuts_icon_picker_tv">TV</string>
+    <string name="shortcuts_icon_picker_twitter">Twitter</string>
+    <string name="shortcuts_icon_picker_unlock">Unlock</string>
+
+    <string name="icon_color_mode_all_icons">All icons</string>
+    <string name="icon_color_mode_system_icons">System icons</string>
+    <string name="icon_color_mode_system_custom_icons">System and custom icons</string> 
+    
     <!-- Status bar background style -->
     <string name="status_bar_transparency_title">Status bar transparency</string>
     <string name="status_bar_color_title">Status bar color</string>
@@ -1483,7 +1503,7 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="custom_density_title">6. Change density to whatever you like!</string>
     <string name="custom_density_summary">If you ever have compatibility issues with the market, be sure to return here and repeat the process.</string>
     <string name="custom_density_summary_invalid">"INVALID DENSITY!"</string>
-    <string name="stock_density">320 stock</string> 
+    <string name="stock_density">320</string> 
     <string name="custom_density">custom</string>
     <string name="set_custom_density_title">Set custom density</string>
     <string name="set_custom_density_set">Set</string>

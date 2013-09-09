@@ -37,10 +37,6 @@ import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.R;
 import com.android.settings.widget.SeekBarPreference;
 
-/**
- * Using the original CyanogenMod Color Picker instead of margaritov used 
- * in Slim roms
- */
 import com.android.settings.cyanogenmod.colorpicker.ColorPickerPreference;
 
 public class StatusBarStyle extends SettingsPreferenceFragment implements
