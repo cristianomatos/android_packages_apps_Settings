@@ -17,8 +17,10 @@
 package com.android.settings.cyanogenmod;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.preference.CheckBoxPreference;
@@ -46,10 +48,16 @@ public class StatusBarStyle extends SettingsPreferenceFragment implements
     private static final String PREF_STATUS_BAR_ALPHA = "status_bar_alpha";
     private static final String PREF_STATUS_BAR_ALPHA_MODE = "status_bar_alpha_mode";
     private static final String PREF_STATUS_BAR_COLOR = "status_bar_color";
+    private static final String PREF_STATUS_BAR_COLOR_MODE = "status_bar_color_mode";
+
+    private static final int MENU_RESET = Menu.FIRST;
+
+    private boolean mCheckPreferences;
 
     private SeekBarPreference mStatusbarTransparency;
     private ColorPickerPreference mStatusBarColor;
     private ListPreference mAlphaMode;
+    private CheckBoxPreference mColorMode;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,7 +65,8 @@ public class StatusBarStyle extends SettingsPreferenceFragment implements
         refreshSettings();
     }
 
-    public void refreshSettings() {
+    private PreferenceScreen refreshSettings() {
+        mCheckPreferences = false;
         PreferenceScreen prefs = getPreferenceScreen();
         if (prefs != null) {
             prefs.removeAll();
@@ -71,8 +80,15 @@ public class StatusBarStyle extends SettingsPreferenceFragment implements
         mStatusBarColor = (ColorPickerPreference) findPreference(PREF_STATUS_BAR_COLOR);
         mStatusBarColor.setOnPreferenceChangeListener(this);
         int intColor = Settings.System.getInt(getActivity().getContentResolver(),
-                    Settings.System.STATUS_BAR_COLOR, 0xff000000);
-        String hexColor = String.format("#%08x", (0xffffffff & intColor));
+                    Settings.System.STATUS_BAR_COLOR, -2);
+        if (intColor == -2) {
+            intColor = getResources().getColor(
+                    com.android.internal.R.color.black);
+            mStatusBarColor.setSummary(getResources().getString(R.string.color_default));
+        } else {
+            String hexColor = String.format("#%08x", (0xffffffff & intColor));
+            mStatusBarColor.setSummary(hexColor);
+        }
         mStatusBarColor.setNewPreviewColor(intColor);
 
         float statBarTransparency = 0.0f;
@@ -95,43 +111,63 @@ public class StatusBarStyle extends SettingsPreferenceFragment implements
         mAlphaMode.setSummary(mAlphaMode.getEntry());
         mAlphaMode.setOnPreferenceChangeListener(this);
 
-        setHasOptionsMenu(true);
-    }
+        mColorMode = (CheckBoxPreference) findPreference(PREF_STATUS_BAR_COLOR_MODE);
+        mColorMode.setChecked(Settings.System.getInt(
+                getActivity().getContentResolver(),
+                Settings.System.STATUS_NAV_BAR_COLOR_MODE, 1) == 1);
+        mColorMode.setOnPreferenceChangeListener(this);
 
+        setHasOptionsMenu(true);
+        mCheckPreferences = true;
+        return prefs;
+    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.status_bar_style, menu);
+        menu.add(0, MENU_RESET, 0, R.string.navbar_reset)
+                .setIcon(R.drawable.ic_settings_backup) // use the backup icon
+                .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.reset:
-                Settings.System.putInt(getActivity().getContentResolver(),
-                        Settings.System.STATUS_NAV_BAR_ALPHA_MODE, 1);
-                Settings.System.putInt(getActivity().getContentResolver(),
-                        Settings.System.STATUS_BAR_COLOR, 0xff000000);
-
-                Settings.System.putFloat(getActivity().getContentResolver(),
-                       Settings.System.STATUS_BAR_ALPHA, 0.0f);
-
-                refreshSettings();
+            case MENU_RESET:
+                resetToDefault();
                 return true;
              default:
                 return super.onContextItemSelected(item);
         }
     }
 
-    @Override
-    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
-            Preference preference) {
-        return super.onPreferenceTreeClick(preferenceScreen, preference);
+    private void resetToDefault() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+        alertDialog.setTitle(R.string.status_bar_reset);
+        alertDialog.setMessage(R.string.status_bar_style_reset_message);
+        alertDialog.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                Settings.System.putInt(getActivity().getContentResolver(),
+                        Settings.System.STATUS_NAV_BAR_ALPHA_MODE, 1);
+                Settings.System.putInt(getActivity().getContentResolver(),
+                        Settings.System.STATUS_BAR_COLOR, -2);
+                Settings.System.putInt(getActivity().getContentResolver(),
+                        Settings.System.STATUS_NAV_BAR_COLOR_MODE, 1);
+
+                Settings.System.putFloat(getActivity().getContentResolver(),
+                       Settings.System.STATUS_BAR_ALPHA, 0.0f);
+
+                refreshSettings();
+            }
+        });
+        alertDialog.setNegativeButton(R.string.cancel, null);
+        alertDialog.create().show();
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
+        if (!mCheckPreferences) {
+            return false;
+        }
         if (preference == mStatusbarTransparency) {
             float valStat = Float.parseFloat((String) newValue);
             Settings.System.putFloat(getActivity().getContentResolver(),
@@ -152,6 +188,11 @@ public class StatusBarStyle extends SettingsPreferenceFragment implements
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.STATUS_NAV_BAR_ALPHA_MODE, alphaMode);
             mAlphaMode.setSummary(mAlphaMode.getEntries()[index]);
+            return true;
+        } else if (preference == mColorMode) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STATUS_NAV_BAR_COLOR_MODE,
+                    mColorMode.isChecked() ? 0 : 1);
             return true;
         }
         return false;
