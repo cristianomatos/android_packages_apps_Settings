@@ -71,7 +71,6 @@
             android:key="ui_force_overflow_button" 
             android:title="@string/hardware_keys_show_overflow_title"
             android:summary="@string/hardware_keys_show_overflow_summary"
-            android:persistent="false"
             android:defaultValue="false" />
 
         <ListPreference
