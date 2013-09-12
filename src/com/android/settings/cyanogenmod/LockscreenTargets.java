@@ -388,6 +388,10 @@ public class LockscreenTargets extends Fragment implements ShortcutPickHelper.On
 
     @Override
     public void shortcutPicked(String uri, String friendlyName, boolean isApplication) {
+        if (uri == null) {
+            return;
+        }
+
         try {
             Intent i = Intent.parseUri(uri, 0);
             PackageManager pm = mActivity.getPackageManager();
