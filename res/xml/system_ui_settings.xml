@@ -57,6 +57,12 @@ limitations under the License.
         android:entryValues="@array/listview_interpolator_values"
         android:defaultValue="0" />
 
+    <PreferenceScreen
+        android:key="app_sidebar"
+        android:fragment="com.android.settings.cyanogenmod.AppSidebar"
+        android:title="@string/app_sidebar_title"    
+        android:summary="@string/app_sidebar_summary" />  
+
     <CheckBoxPreference
         android:key="use_alt_resolver"
         android:title="@string/alt_resolver"
