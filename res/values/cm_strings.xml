@@ -1675,4 +1675,10 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="trigger_bottom_title">Trigger height</string>
     <string name="trigger_bottom_summary">Adjust the height of the trigger area</string> 
 
+    <!-- System UI xml headers -->
+    <string name="status_bar_category_header">Status bar</string>
+    <string name="visor_and_animation_category_header">Visor and Animation</string>
+    <string name="util_category_header">Util</string>
+    <string name="lights_and_warnings_category_header">Lights and Warnings</string>
+    
 </resources>
