@@ -1717,7 +1717,8 @@
 	<activity android:name=".cyanogenmod.NotificationDrawerStyle" />
 	<activity android:name=".cyanogenmod.StatusBarTrafficColor" />
 	<activity android:name=".cyanogenmod.HaloSettings" />
-	<activity android:name=".cyanogenmod.KeyboardInputSettings" />	
+	<activity android:name=".cyanogenmod.KeyboardInputSettings" />
+	<activity android:name=".cyanogenmod.QuickSettingsTilesStyle" /> 	
 
 	<activity
             android:name=".cyanogenmod.DensityChanger"
