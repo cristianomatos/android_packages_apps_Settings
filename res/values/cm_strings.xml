@@ -1728,5 +1728,9 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="ad_redisplay_1h">1 hour</string>
     <string name="ad_redisplay_2h">2 hours</string>
     <string name="ad_redisplay_5h">5 hours</string>
+
+    <!-- Less Notification sounds -->
+    <string name="less_notification_sounds_title">Less Frequent Notification Sounds</string>
+    <string name="less_notification_sounds_summary">Limit the notification sounds of each app to only play once per set time period</string> 
     
 </resources>

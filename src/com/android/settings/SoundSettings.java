@@ -97,6 +97,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements
     private static final String KEY_POWER_NOTIFICATIONS = "power_notifications";
     private static final String KEY_POWER_NOTIFICATIONS_VIBRATE = "power_notifications_vibrate";
     private static final String KEY_POWER_NOTIFICATIONS_RINGTONE = "power_notifications_ringtone";
+    private static final String PREF_LESS_NOTIFICATION_SOUNDS = "less_notification_sounds"; 
 
     private static final String RING_MODE_NORMAL = "normal";
     private static final String RING_MODE_VIBRATE = "vibrate";
@@ -118,6 +119,7 @@ public class SoundSettings extends SettingsPreferenceFragment implements
 
     private ListPreference mVolumeOverlay;
     private ListPreference mRingMode;
+    private ListPreference mAnnoyingNotifications; 
     private CheckBoxPreference mSoundEffects;
     private Preference mMusicFx;
     private Preference mRingtonePreference;
@@ -214,6 +216,12 @@ public class SoundSettings extends SettingsPreferenceFragment implements
         if (!Utils.hasVolumeRocker(getActivity())) {
             getPreferenceScreen().removePreference(findPreference(KEY_VOLUME_ADJUST_SOUNDS));
         }
+
+	mAnnoyingNotifications = (ListPreference) findPreference(PREF_LESS_NOTIFICATION_SOUNDS);
+        mAnnoyingNotifications.setOnPreferenceChangeListener(this);
+        int notificationThreshold = Settings.System.getInt(resolver,
+                Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD, 0);
+        mAnnoyingNotifications.setValue(Integer.toString(notificationThreshold));
 
         mRingtonePreference = findPreference(KEY_RINGTONE);
         mNotificationPreference = findPreference(KEY_NOTIFICATION_SOUND);
@@ -487,6 +495,10 @@ public class SoundSettings extends SettingsPreferenceFragment implements
             Settings.System.putInt(getContentResolver(),
                     Settings.System.MODE_VOLUME_OVERLAY, value);
             mVolumeOverlay.setSummary(mVolumeOverlay.getEntries()[index]);
+	} else if (preference == mAnnoyingNotifications) {
+            final int val = Integer.valueOf((String) objValue);
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD, val); 
         }
 
         return true;
