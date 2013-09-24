@@ -54,6 +54,12 @@ limitations under the License.
             android:title="@string/title_ui"
             android:summary="@string/title_ui_summary" />
 
+	<PreferenceScreen
+            android:id="@+id/animations"	
+            android:title="@string/title_animation_controls"	
+            android:summary="@string/header_summary_animation"	
+            android:fragment="com.android.settings.cyanogenmod.fragments.AnimationControls" />
+
     	<ListPreference
             android:key="listview_animation"
             android:dialogTitle="@string/listview_animation_title"
