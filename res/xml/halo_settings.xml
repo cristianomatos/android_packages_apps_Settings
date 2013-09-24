@@ -47,6 +47,7 @@ limitations under the License.
             android:key="halo_ninja"
             android:title="@string/halo_ninja_title"
             android:summary="@string/halo_ninja_summary"
+	    android:dependency="halo_enabled"	
             android:defaultValue="false" />
 
         <ListPreference
@@ -54,6 +55,7 @@ limitations under the License.
             android:dialogTitle="@string/halo_notification_count_title"
             android:title="@string/halo_notification_count_title"
             android:summary="@string/halo_notification_count_summary"
+	    android:dependency="halo_enabled"
             android:entries="@array/entries_halo_notification_count"
             android:entryValues="@array/values_halo_notification_count" />
 
@@ -61,6 +63,7 @@ limitations under the License.
             android:key="halo_msgbox"
             android:title="@string/halo_notification_msgbox_title"
             android:summary="@string/halo_notification_msgbox_summary"
+	    android:dependency="halo_enabled"
             android:defaultValue="true" />
 
         <ListPreference  
@@ -68,6 +71,7 @@ limitations under the License.
             android:dialogTitle="@string/halo_msgbox_animation_title"
             android:title="@string/halo_msgbox_animation_title"
             android:summary="@string/halo_msgbox_animation_summary"
+            android:dependency="halo_enabled"
             android:entries="@array/entries_halo_msgbox_animation"
             android:entryValues="@array/values_halo_msgbox_animation" />
 
@@ -97,12 +101,14 @@ limitations under the License.
             android:key="halo_unlock_ping"
             android:title="@string/halo_unlock_ping_title"
             android:summary="@string/halo_unlock_ping_summary"
+	    android:dependency="halo_enabled"
             android:defaultValue="false" />
 
 	<CheckBoxPreference
             android:key="show_popup"
             android:title="@string/popups_title"
             android:summary="@string/popups_summary"
+	    android:dependency="halo_enabled"
             android:defaultValue="true" />
         
     </PreferenceCategory>
