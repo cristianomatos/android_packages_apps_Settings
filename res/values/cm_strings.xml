@@ -1732,6 +1732,10 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
 
     <!-- Less Notification sounds -->
     <string name="less_notification_sounds_title">Less Frequent Notification Sounds</string>
-    <string name="less_notification_sounds_summary">Limit the notification sounds of each app to only play once per set time period</string> 
-    
+    <string name="less_notification_sounds_summary">Limit the notification sounds of each app to only play once per set time period</string>
+
+    <!-- Hide initial pag hints -->
+    <string name="lockscreen_hide_initial_page_hints_title">Hide initial page hints</string>
+    <string name="lockscreen_hide_initial_page_hints_summary">Disable hints on left and right when the screen is turned on.</string>
+ 
 </resources>
