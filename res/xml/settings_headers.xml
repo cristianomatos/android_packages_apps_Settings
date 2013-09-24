@@ -199,13 +199,6 @@
         android:title="@string/security_settings_title"
         android:id="@+id/security_settings" />
 
-    <!-- App Ops -->
-    <header
-        android:id="@+id/application_settings"
-        android:fragment="com.android.settings.applications.AppOpsSummary"
-        android:icon="@drawable/ic_privacy_guard"
-        android:title="@string/app_ops_settings" />	
-
     <!-- Language -->
     <header
         android:id="@+id/language_settings"
