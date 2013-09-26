@@ -103,7 +103,7 @@
 
     <!-- crDroid Version -->	
     <string name="crDroid_version">crDroid AOSP version</string>
-    <string name="crDroid_version_default">Build 17</string>
+    <string name="crDroid_version_default">Build 20</string>
 
     <!-- About phone screen, build date of ROM -->
     <string name="build_date">Build date</string>
