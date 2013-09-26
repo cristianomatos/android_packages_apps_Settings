@@ -1727,6 +1727,13 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="ad_redisplay_1h">1 hour</string>
     <string name="ad_redisplay_2h">2 hours</string>
     <string name="ad_redisplay_5h">5 hours</string>
+    <string name="ad_timeout_title">Display timeout</string>
+    <string name="ad_timeout_3s">3 seconds</string>
+    <string name="ad_timeout_5s">5 seconds</string>
+    <string name="ad_timeout_8s">8 seconds</string>
+    <string name="ad_timeout_10s">10 seconds</string>
+    <string name="ad_timeout_15s">15 seconds</string>
+    <string name="ad_timeout_25s">25 seconds</string> 
 
     <!-- Less Notification sounds -->
     <string name="less_notification_sounds_title">Less Frequent Notification Sounds</string>
