@@ -84,6 +84,11 @@
             android:summary="@string/lockscreen_maximize_widgets_summary"
             android:title="@string/lockscreen_maximize_widgets_title" />
 
+	<com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
+            android:key="lockscreen_all_widgets"
+            android:title="@string/lockscreen_all_widgets_title"
+            android:summary="@string/lockscreen_all_widgets_summary" /> 
+
 	<CheckBoxPreference
             android:key="lockscreen_hide_initial_page_hints"
             android:persistent="false"

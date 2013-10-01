@@ -78,12 +78,14 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
     private static final String KEY_LOCKSCREEN_ENABLE_WIDGETS = "lockscreen_enable_widgets";
     private static final String KEY_LOCKSCREEN_ENABLE_CAMERA = "lockscreen_enable_camera";
     private static final String KEY_LOCKSCREEN_HIDE_INITIAL_PAGE_HINTS = "lockscreen_hide_initial_page_hints";
+    private static final String PREF_LOCKSCREEN_ALL_WIDGETS = "lockscreen_all_widgets"; 
 
     private ListPreference mCustomBackground;
     private ListPreference mBatteryStatus;
     private CheckBoxPreference mEnableWidgets;
     private CheckBoxPreference mEnableCamera;
-    private CheckBoxPreference mLockscreenHideInitialPageHints; 
+    private CheckBoxPreference mLockscreenHideInitialPageHints;
+    private CheckBoxPreference mLockscreenAllWidgets;  
     private SeekBarPreference mBgAlpha;
 
     private boolean mIsScreenLarge;
@@ -156,6 +158,10 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
             } else {
                 mLockscreenHideInitialPageHints.setOnPreferenceChangeListener(this);
             } 
+
+	    mLockscreenAllWidgets = (CheckBoxPreference)findPreference(PREF_LOCKSCREEN_ALL_WIDGETS);
+            mLockscreenAllWidgets.setChecked(Settings.System.getBoolean(getActivity().getContentResolver(),
+                Settings.System.LOCKSCREEN_ALL_WIDGETS, false)); 
 
             PreferenceScreen lockscreenButtons = (PreferenceScreen) findPreference(KEY_LOCKSCREEN_BUTTONS);
             if (!hasButtons()) {
@@ -240,7 +246,12 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
 	    if (mLockscreenHideInitialPageHints != null) {
                 mLockscreenHideInitialPageHints.setChecked(Settings.System.getInt(cr,
                         Settings.System.LOCKSCREEN_HIDE_INITIAL_PAGE_HINTS, 0) == 1);
-            } 
+            }
+
+	    if (mLockscreenAllWidgets != null) {
+                mLockscreenAllWidgets.setChecked(Settings.System.getInt(cr,
+                        Settings.System.LOCKSCREEN_ALL_WIDGETS, 0) == 1);
+            }  
         }
     }
 
@@ -354,6 +365,10 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
             boolean value = (Boolean) objValue;
             Settings.System.putInt(cr, Settings.System.LOCKSCREEN_HIDE_INITIAL_PAGE_HINTS, value ? 1 : 0);
             return true;
+	} else if (preference == mLockscreenAllWidgets) {
+            boolean value = (Boolean) objValue;
+            Settings.System.putInt(cr, Settings.System.LOCKSCREEN_ALL_WIDGETS, value ? 1 : 0);
+            return true; 
         } else if (preference == mEnableWidgets) {
             updateKeyguardState(mEnableCamera.isChecked(), (Boolean) objValue);
             return true;

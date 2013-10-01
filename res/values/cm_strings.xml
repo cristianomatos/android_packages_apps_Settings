@@ -1763,4 +1763,8 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="animation_duration_default">Default</string>
     <string name="header_summary_animation">@null</string>
 
+    <!-- Allow homescreen widgets on the lockscreen -->
+    <string name="lockscreen_all_widgets_title">Allow all widgets</string>
+    <string name="lockscreen_all_widgets_summary">Warning** Some widgets are not intended to be used on the lockscreen.</string>
+
 </resources>
