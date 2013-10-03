@@ -41,6 +41,19 @@
         android:title="@string/notification_style_title"
         android:summary="@string/notification_style_summary" />
 
+    <!-- Notification shortcut -->
+    <PreferenceScreen
+             android:key="cyanogenmod_notification_shortcuts"
+             android:fragment="com.android.settings.cyanogenmod.dslv.ButtonsListViewSettings"
+             android:summary="@string/notification_shortcuts_settings_summary"
+             android:title="@string/notification_shortcuts_settings_title">
+         <extra android:name="buttonMode" android:value="5" />
+         <extra android:name="maxAllowedButtons" android:value="16" />
+         <extra android:name="disableLongpress" android:value="true" />
+         <extra android:name="useAppPickerOnly" android:value="true" />
+         <extra android:name="fragment" android:value="com.android.settings.cyanogenmod.fragments.NotificationsShortcutFragment" />
+    </PreferenceScreen>  
+
     <PreferenceCategory
        android:title="@string/category_quick_access" > 
 

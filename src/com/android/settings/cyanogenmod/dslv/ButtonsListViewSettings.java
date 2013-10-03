@@ -79,7 +79,7 @@ public class ButtonsListViewSettings extends ListFragment implements
     private static final int PIE_SECOND            = 2;
     private static final int NAV_RING              = 3;
     //private static final int LOCKSCREEN_SHORTCUT   = 4;
-    //private static final int NOTIFICATION_SHORTCUT = 5;
+    private static final int NOTIFICATION_SHORTCUT = 5;
 
     private static final int DEFAULT_MAX_BUTTON_NUMBER = 5;
 
@@ -469,9 +469,9 @@ public class ButtonsListViewSettings extends ListFragment implements
         String icon = "";
         switch (mButtonMode) {
             //case LOCKSCREEN_SHORTCUT:
-            //case NOTIFICATION_SHORTCUT:
-            //    buttonMode = res.getString(R.string.shortcut_action_help_shortcut);
-            //    break;
+            case NOTIFICATION_SHORTCUT:
+                buttonMode = res.getString(R.string.shortcut_action_help_shortcut);
+                break;
             case NAV_BAR:
             case PIE:
             case PIE_SECOND:
@@ -573,8 +573,8 @@ public class ButtonsListViewSettings extends ListFragment implements
             // description
             //case LOCKSCREEN_SHORTCUT:
             //    return ButtonsHelper.getLockscreenShortcutConfig(mActivity);
-            //case NOTIFICATION_SHORTCUT:
-            //    return ButtonsHelper.getNotificationsShortcutConfig(mActivity);
+            case NOTIFICATION_SHORTCUT:
+                return ButtonsHelper.getNotificationsShortcutConfig(mActivity);
         }
         return null;
     }
@@ -596,9 +596,9 @@ public class ButtonsListViewSettings extends ListFragment implements
             //case LOCKSCREEN_SHORTCUT:
             //    ButtonsHelper.setLockscreenShortcutConfig(mActivity, buttonConfigs, reset);
             //    break;
-            //case NOTIFICATION_SHORTCUT:
-            //    ButtonsHelper.setNotificationShortcutConfig(mActivity, buttonConfigs, reset);
-            //    break;
+            case NOTIFICATION_SHORTCUT:
+                ButtonsHelper.setNotificationShortcutConfig(mActivity, buttonConfigs, reset);
+                break;
         }
     }
 

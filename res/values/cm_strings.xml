@@ -1773,4 +1773,15 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="lockscreen_all_widgets_title">Allow all widgets</string>
     <string name="lockscreen_all_widgets_summary">Warning** Some widgets are not intended to be used on the lockscreen.</string>
 
+    <!-- Notification Shortcuts -->
+    <string name="notification_shortcuts_settings_title">Shortcuts</string> 
+    <string name="notification_shortcuts_settings_summary">Show shortcuts in the notification drawer</string>
+    <string name="notification_shortcuts_color_title">Shortcut icon color</string>
+    <string name="notification_shortcuts_color_summary">Colorize the shortcut icons</string>
+    <string name="notification_shortcuts_color_mode_title">Icon color mode</string>
+    <string name="notification_shortcuts_color_mode_summary">Change the shorcuts icon color mode</string>
+
+    <!-- Hide carrier label -->
+    <string name="notification_hide_carrier_title">Hide carrier label</string>  
+    
 </resources>
