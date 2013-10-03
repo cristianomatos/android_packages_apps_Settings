@@ -1781,7 +1781,4 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="notification_shortcuts_color_mode_title">Icon color mode</string>
     <string name="notification_shortcuts_color_mode_summary">Change the shorcuts icon color mode</string>
 
-    <!-- Hide carrier label -->
-    <string name="notification_hide_carrier_title">Hide carrier label</string>  
-    
 </resources>

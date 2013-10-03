@@ -75,8 +75,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_DUAL_PANEL = "force_dualpanel";
     private static final String KEY_WAKEUP_WHEN_PLUGGED_UNPLUGGED = "wakeup_when_plugged_unplugged";
     private static final String PREF_NOTIFICATION_SHOW_WIFI_SSID = "notification_show_wifi_ssid";
-    private static final String PREF_NOTIFICATION_HIDE_CARRIER = "notification_hide_carrier";  
-
+    
     private static final String CATEGORY_LIGHTS = "lights_prefs";
     private static final String KEY_NOTIFICATION_PULSE = "notification_pulse";
     private static final String KEY_BATTERY_LIGHT = "battery_light"; 
@@ -105,8 +104,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
     private WifiDisplayStatus mWifiDisplayStatus;
     private Preference mWifiDisplayPreference;
-    private CheckBoxPreference mHideCarrier; 
-
+    
     private CheckBoxPreference mAdaptiveBacklight; 
 
     private PreferenceScreen mNotificationPulse;
@@ -184,15 +182,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 	mShowWifiName = (CheckBoxPreference) findPreference(PREF_NOTIFICATION_SHOW_WIFI_SSID);
         mShowWifiName.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.NOTIFICATION_SHOW_WIFI_SSID, 0) == 1); 
-	mShowWifiName.setOnPreferenceChangeListener(this);
-
-        mHideCarrier = (CheckBoxPreference) findPreference(PREF_NOTIFICATION_HIDE_CARRIER);
-        boolean hideCarrier = Settings.System.getInt(getActivity().getContentResolver(),
-                Settings.System.NOTIFICATION_HIDE_CARRIER, 0) == 1;
-        mHideCarrier.setChecked(hideCarrier);
-        mShowWifiName.setEnabled(!hideCarrier);
-        mHideCarrier.setOnPreferenceChangeListener(this); 
-
+	
 	mAdaptiveBacklight = (CheckBoxPreference) findPreference(KEY_ADAPTIVE_BACKLIGHT);
         if (!isAdaptiveBacklightSupported()) { 
             getPreferenceScreen().removePreference(mAdaptiveBacklight);
@@ -498,6 +488,11 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
                     Settings.System.WAKEUP_WHEN_PLUGGED_UNPLUGGED,
                     mWakeUpWhenPluggedOrUnplugged.isChecked() ? 1 : 0);
             return true;
+	} else if (preference == mShowWifiName) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.NOTIFICATION_SHOW_WIFI_SSID,
+                    mShowWifiName.isChecked() ? 1 : 0);
+            return true;  
 	} else if (preference == mAdaptiveBacklight) {
             return AdaptiveBacklight.setEnabled(mAdaptiveBacklight.isChecked());    
 	} else if (preference == mCustomLabel) {
@@ -549,18 +544,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         }
         if (KEY_FONT_SIZE.equals(key)) {
             writeFontSizePreference(objValue);
-        } else if (preference == mShowWifiName) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.NOTIFICATION_SHOW_WIFI_SSID,
-                    (Boolean) objValue ? 1 : 0);
-            return true;
-        } else if (preference == mHideCarrier) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.NOTIFICATION_HIDE_CARRIER,
-                    (Boolean) objValue ? 1 : 0);
-            mShowWifiName.setEnabled(!((Boolean) objValue));
-            return true;
-	} 
+        } 
         return true;
     }
 
