@@ -159,6 +159,8 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
 
     private static final String ADVANCED_REBOOT_KEY = "advanced_reboot";
 
+    private static final String MEDIA_SCANNER_ON_BOOT = "media_scanner_on_boot"; 
+
     private static final int RESULT_DEBUG_APP = 1000;
 
     private IWindowManager mWindowManager;
@@ -218,6 +220,7 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
     private PreferenceScreen mDevelopmentTools;
 
     private CheckBoxPreference mAdvancedReboot;
+    private ListPreference mMSOB; 
     private CheckBoxPreference mExperimentalWebView;
 
     private final ArrayList<Preference> mAllPrefs = new ArrayList<Preference>();
@@ -277,6 +280,10 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
         mAllPrefs.add(mPassword);
         mAdvancedReboot = findAndInitCheckboxPref(ADVANCED_REBOOT_KEY);
 	updateAdvancedRebootOptions(); 
+
+	mMSOB = (ListPreference) findPreference(MEDIA_SCANNER_ON_BOOT);
+        mAllPrefs.add(mMSOB);
+        mMSOB.setOnPreferenceChangeListener(this); 
 
         if (!android.os.Process.myUserHandle().equals(UserHandle.OWNER)) {
             disableForUser(mEnableAdb);
@@ -548,6 +555,7 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
         updateBugreportOptions();
         updateRootAccessOptions();
         updateAdvancedRebootOptions();
+	updateMSOBOptions(); 
     }
 
     private void resetAdvancedRebootOptions() {
@@ -565,6 +573,25 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
         mAdvancedReboot.setChecked(Settings.Secure.getInt(getActivity().getContentResolver(),
                 Settings.Secure.ADVANCED_REBOOT, 0) != 0);
     }
+
+    private void resetMSOBOptions() {
+        Settings.System.putInt(getActivity().getContentResolver(),
+                Settings.System.MEDIA_SCANNER_ON_BOOT, 0);
+    }
+
+    private void writeMSOBOptions(Object newValue) {
+        Settings.System.putInt(getActivity().getContentResolver(),
+                Settings.System.MEDIA_SCANNER_ON_BOOT,
+                Integer.valueOf((String) newValue));
+        updateMSOBOptions();
+    }
+
+    private void updateMSOBOptions() {
+        int value = Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.MEDIA_SCANNER_ON_BOOT, 0);
+        mMSOB.setValue(String.valueOf(value));
+        mMSOB.setSummary(mMSOB.getEntry());
+    } 
 
     private void updateAdbOverNetwork() {
         int port = Settings.Secure.getInt(getActivity().getContentResolver(),
@@ -607,6 +634,7 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
         resetRootAccessOptions();
         resetAdbNotifyOptions();
         resetVerifyAppsOverUsbOptions();
+	resetMSOBOptions();
         writeAnimationScaleOption(0, mWindowAnimationScale, null);
         writeAnimationScaleOption(1, mTransitionAnimationScale, null);
         writeAnimationScaleOption(2, mAnimatorDurationScale, null);
@@ -1397,6 +1425,9 @@ public class DevelopmentSettings extends SettingsPreferenceFragment
         } else if (preference == mAppProcessLimit) {
             writeAppProcessLimitOptions(newValue);
             return true;
+	} else if (preference == mMSOB) {
+            writeMSOBOptions(newValue);
+            return true; 
         } else if (preference == mRootAccess) {
             if ("0".equals(SystemProperties.get(ROOT_ACCESS_PROPERTY, "1"))
                     && !"0".equals(newValue)) {

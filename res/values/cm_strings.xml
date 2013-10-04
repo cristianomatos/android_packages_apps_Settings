@@ -103,7 +103,7 @@
 
     <!-- crDroid Version -->	
     <string name="crDroid_version">crDroid AOSP version</string>
-    <string name="crDroid_version_default">Build 20</string>
+    <string name="crDroid_version_default">Build 22</string>
 
     <!-- About phone screen, build date of ROM -->
     <string name="build_date">Build date</string>
@@ -1780,5 +1780,11 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="notification_shortcuts_color_summary">Colorize the shortcut icons</string>
     <string name="notification_shortcuts_color_mode_title">Icon color mode</string>
     <string name="notification_shortcuts_color_mode_summary">Change the shorcuts icon color mode</string>
+
+    <!-- MediaScanner behavior on boot -->
+    <string name="media_scanner_on_boot_title">MediaScanner behavior on boot</string>
+    <string name="media_scanner_on_boot_enabled">Scan media</string>
+    <string name="media_scanner_on_boot_ask">Ask to scan (notification)</string>
+    <string name="media_scanner_on_boot_disabled">Do not scan media</string> 
 
 </resources>
