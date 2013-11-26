@@ -210,6 +210,13 @@
                 android:icon="@drawable/ic_settings_profiles"
                 />
 
+        <!-- Halo -->
+        <dashboard-tile
+               android:id="@+id/halo_settings"
+               android:title="@string/halo_settings_title"
+               android:fragment="com.android.settings.paranoid.Halo"
+               android:icon="@drawable/ic_settings_halo" />
+
         <!-- Status bar -->
         <dashboard-tile
                 android:id="@+id/status_bar_settings"
