@@ -44,6 +44,7 @@ import android.text.TextUtils;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.Toast;
+import com.android.settings.cyanogenmod.SecureSettingSwitchPreference;
 import com.android.settings.search.BaseSearchIndexProvider;
 import com.android.settings.search.Index;
 import com.android.settings.search.Indexable;
@@ -96,10 +97,9 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment implements In
 
     static final int TAPS_TO_BE_A_DEVELOPER = 7;
 
-    public static final String PREFS_FILE = "device";
     public static final String KEY_ADVANCED_MODE = "advanced_mode";
 
-    SwitchPreference mAdvancedSettings;
+    SecureSettingSwitchPreference mAdvancedSettings;
 
     long[] mHits = new long[3];
     int mDevHitCountdown;
@@ -215,7 +215,7 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment implements In
                 getPreferenceScreen().removePreference(pref);
             }
         }
-        mAdvancedSettings = (SwitchPreference) findPreference(KEY_ADVANCED_MODE);
+        mAdvancedSettings = (SecureSettingSwitchPreference) findPreference(KEY_ADVANCED_MODE);
     }
 
     @Override
@@ -287,12 +287,6 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment implements In
             }
         } else if (preference.getKey().equals(KEY_DEVICE_FEEDBACK)) {
             sendFeedback();
-        } else if (preference.getKey().equals(KEY_ADVANCED_MODE)) {
-            final boolean isEnabled = mAdvancedSettings.isChecked();
-            getActivity().getSharedPreferences(PREFS_FILE, 0)
-                    .edit()
-                    .putBoolean(KEY_ADVANCED_MODE, isEnabled)
-                    .apply();
         } else if (preference.getKey().equals(KEY_CRDROID_SHARE)) {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_SEND);
@@ -300,6 +294,20 @@ public class DeviceInfoSettings extends SettingsPreferenceFragment implements In
         intent.putExtra(Intent.EXTRA_TEXT, String.format(
                 getActivity().getString(R.string.share_message), Build.MODEL));
         startActivity(Intent.createChooser(intent, getActivity().getString(R.string.share_chooser_title)));
+        } else if (preference.getKey().equals(KEY_MOD_VERSION)) {
+            System.arraycopy(mHits, 1, mHits, 0, mHits.length-1);
+            mHits[mHits.length-1] = SystemClock.uptimeMillis();
+            if (mHits[0] >= (SystemClock.uptimeMillis()-500)) {
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.putExtra("is_cm", true);
+                intent.setClassName("android",
+                        com.android.internal.app.PlatLogoActivity.class.getName());
+                try {
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Log.e(LOG_TAG, "Unable to start activity " + intent.toString());
+                }
+            }
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
