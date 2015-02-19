@@ -72,7 +72,7 @@ public class NavBarDimensions extends SettingsPreferenceFragment implements
 
         mNavigationBarWidth =
             (ListPreference) findPreference(PREF_NAVIGATION_BAR_WIDTH);
-        if (!ScreenType.isTablet(getActivity())) {
+        if (!ScreenType.isPhone(getActivity())) {
             prefSet.removePreference(mNavigationBarWidth);
             mNavigationBarWidth = null;
         } else {
