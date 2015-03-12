@@ -195,39 +195,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             }
         }
 
-        mAdaptiveBacklight = (SwitchPreference) findPreference(KEY_ADAPTIVE_BACKLIGHT);
-        if (calibrationPrefs != null && !isAdaptiveBacklightSupported()) {
-            calibrationPrefs.removePreference(mAdaptiveBacklight);
-            mAdaptiveBacklight = null;
-        }
-
-        mSunlightEnhancement = (SwitchPreference) findPreference(KEY_SUNLIGHT_ENHANCEMENT);
-        if (calibrationPrefs != null && mSunlightEnhancement != null
-                && !isSunlightEnhancementSupported()) {
-            calibrationPrefs.removePreference(mSunlightEnhancement);
-            mSunlightEnhancement = null;
-        }
-
-        mColorEnhancement = (SwitchPreference) findPreference(KEY_COLOR_ENHANCEMENT);
-        if (calibrationPrefs != null && mColorEnhancement != null
-                && !isColorEnhancementSupported()) {
-            calibrationPrefs.removePreference(mColorEnhancement);
-            mColorEnhancement = null;
-        }
-
-        if (calibrationPrefs != null && !DisplayColor.isSupported()) {
-            Preference colorPref = findPreference(KEY_DISPLAY_COLOR);
-            if (colorPref != null) {
-                calibrationPrefs.removePreference(colorPref);
-            }
-        }
-        if (calibrationPrefs != null && !DisplayGamma.isSupported()) {
-            Preference gammaPref = findPreference(KEY_DISPLAY_GAMMA);
-            if (gammaPref != null) {
-                calibrationPrefs.removePreference(gammaPref);
-            }
-        }
-
         mDozeCategory = (PreferenceCategory) findPreference(KEY_DOZE_CATEGORY);
         if (isDozeAvailable(activity)) {
             // Doze master switch
